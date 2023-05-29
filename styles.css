@@ -1,0 +1,118 @@
+/* Main */
+body {
+    background-color: blueviolet;
+    transition: 0.5s;
+}
+
+main {
+    background-color: goldenrod;
+}
+
+
+/* Dark mode*/
+.dark-mode {
+    background-color: #323232;
+    color: #fff;
+    transition: 0.5s
+}
+
+
+/* Menu buttons */
+.menu-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.menu-button {
+    background-color: white;
+    border-radius: 20px;
+    border: solid;
+    border-color: #EF6740;
+    cursor: pointer;
+    height: 2rem;
+    width: 10rem;
+}
+
+
+/* Create event > Modal content*/
+.task-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: none;
+
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.8);
+
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.create-content {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.input-field {
+    font-size: 18px;
+    margin-bottom: 10px;
+    width: max-content;
+}
+
+.modal-button {
+    background-color: none;
+    float: right;
+    margin-right: 10px;
+
+}
+
+.modal-submit {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+
+}
+
+
+/* Task list */
+.task-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 1em
+}
+
+
+
+.task-container {
+    background-color: turquoise;
+}
+
+.task-container>div:nth-child(odd) {
+    background-color: aqua;
+}
