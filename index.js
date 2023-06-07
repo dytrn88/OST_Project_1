@@ -1,3 +1,4 @@
+
 // Toggle for "Dark theme"
 const darkModeButton = document.getElementById('darkMode');
 darkModeButton.addEventListener('click', () => {
@@ -28,6 +29,7 @@ window.onclick = function (event) {
 // Listener for "Creating an task"
 
 
+// Rendering tasks.js
 
-// OOP
 
+// Listener for editing a task

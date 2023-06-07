@@ -41,20 +41,74 @@
             </div>
 
             <div class="task-container" id="taskContainer">
-                <div class="task-item" id="taskItem">Tasks
-                    <button>Edit</button>
-                </div>
-                <div class="task-item2">test2
-                    <div>test 2.1</div>
+
+                <div class="task-item" id="taskItem">
+                    <h3>Task list</h3>
+                    <div style="color: darkgrey;">Add filter and sort function</div>
+                    <div class="task-list" id="taskList"> </div>
                 </div>
 
+                <div class="task-detail" id="taskDetail">
+                    <h3>Task details</h3>
+                    <form id="editTaskForm">
+                        <label for="selectedTitle">Title:</label>
+                        <input type="text" id="selectedTitle" readonly>
+                        <br>
+                        <label for="selectedContent">Content:</label>
+                        <input type="text" id="selectedContent" readonly>
+                        <br>
+                        <label for="selectedPriority">Priority:</label>
+                        <input type="text" id="selectedPriority" readonly>
+                        <br>
 
+                        <button type="submit">Update</button>
+
+                    </form>
+                </div>
             </div>
 
         </section>
     </main>
 
-    <script src="index.js"></script>
+    <script src="index.js" type="module"></script>
+
+    <!-- to move to controllers/services-->
+
+    <!-- Taskslist left side-->
+    <script type="module">
+        import { addTask, getTask, getTasks } from './js/services/data/tasks.js'
+
+        const taskTitlesElement = document.querySelector('#taskList');
+        const selectedTitleElement = document.querySelector('#selectedTitle');
+        const selectedContentElement = document.querySelector('#selectedContent');
+        const selectedPriorityElement = document.querySelector('#selectedPriority');
+
+
+        function renderTaskTitles() {
+            taskTitlesElement.innerHTML = '';
+
+            getTasks().forEach(task => {
+                const taskEntry = `<p data-todo-id=${task.id}>${task.title}<p/>`
+                taskTitlesElement.insertAdjacentHTML('beforeend', taskEntry);
+            });
+        }
+        renderTaskTitles();
+
+        taskTitlesElement.addEventListener("click", (event) => {
+            if (event.target.dataset.todoId) {
+                const task = getTask(Number(event.target.dataset.todoId));
+                selectedTitleElement.value = task.title;
+                selectedContentElement.value = task.content;
+                selectedPriorityElement.value = task.priority;
+
+            }
+        })
+
+    </script>
+
+    <!-- Taskdisplay to edit right side-->
+
+
 </body>
 
 </html>
