@@ -7,6 +7,7 @@ darkModeButton.addEventListener('click', () => {
 
 
 // Listener for "Create button"
+
 const buttonCreate = document.getElementById("createTask");
 buttonCreate.onclick = function () {
     modal.style.display = "block";

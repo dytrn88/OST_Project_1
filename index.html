@@ -28,65 +28,61 @@
                 </div>
                 <div id="newTask">
                     <form>
-                        <input type="text" id="newTaskTitle" placeholder="Title">
+                        <!-- <input type="text" id="newTaskTitle" placeholder="Title"> -->
                         <input type="text" id="newTaskContent" placeholder="Content">
 
-                        <button type="button" id="newTaskBtn">Test</button>
+                        <!-- <button type="button" id="newTaskBtn">Test</button> -->
                     </form>
                 </div>
                 <div id="testContainer"></div>
-                <!--
 
-                    <div class="task-modal" id="taskModal">
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <div class="create-content">
-                                <h3>What would you like to do next?</h3>
-                                <form class="add-task-form" id="addTaskForm">
-                                    
-                                    <input class="input-field" id="title" type="text" placeholder="Add title">
-                                    
-                                    
-                                    
-                                    <div class="modal-button">
-                                        <button class="modal-submit" id="modalSubmit">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
+
+                <div class="task-modal" id="taskModal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div class="create-content">
+                            <h3>What would you like to do next?</h3>
+                            <form class="add-task-form" id="addTaskForm">
+
+                                <input class="input-field" id="newTaskTitle" type="text" placeholder="Add title">
+                                <button type="button" id="newTaskBtn">Submit</button>
+
+                            </form>
                         </div>
                     </div>
                 </div>
-            -->
+            </div>
 
-                <div class="task-container" id="taskContainer">
 
-                    <div class="task-item" id="taskItem">
-                        <h3>Task list</h3>
-                        <div style="color: darkgrey;">Add filter and sort function</div>
-                        <div class="task-list" id="taskList"> </div>
-                    </div>
+            <div class="task-container" id="taskContainer">
 
-                    <div class="task-detail" id="taskDetail">
-                        <h3>Task details</h3>
-                        <form id="editTaskForm">
-                            <label for="selectedTitle">Title:</label>
-                            <input type="text" id="selectedTitle" readonly>
-                            <br>
-                            <label for="selectedContent">Content:</label>
-                            <input type="text" id="selectedContent" readonly>
-                            <br>
-                            <label for="selectedDate">Date:</label>
-                            <input type="text" id="selectedDate" readonly>
-                            <br>
-                            <label for="selectedPriority">Priority:</label>
-                            <input type="text" id="selectedPriority" readonly>
-                            <br>
-
-                            <button type="submit">Update</button>
-
-                        </form>
-                    </div>
+                <div class="task-item" id="taskItem">
+                    <h3>Task list</h3>
+                    <div style="color: darkgrey;">Add filter and sort function</div>
+                    <div class="task-list" id="taskList"> </div>
                 </div>
+
+                <div class="task-detail" id="taskDetail">
+                    <h3>Task details</h3>
+                    <form id="editTaskForm">
+                        <label for="selectedTitle">Title:</label>
+                        <input type="text" id="selectedTitle" readonly>
+                        <br>
+                        <label for="selectedContent">Content:</label>
+                        <input type="text" id="selectedContent" readonly>
+                        <br>
+                        <label for="selectedDate">Date:</label>
+                        <input type="text" id="selectedDate" readonly>
+                        <br>
+                        <label for="selectedPriority">Priority:</label>
+                        <input type="text" id="selectedPriority" readonly>
+                        <br>
+
+                        <button type="submit">Update</button>
+
+                    </form>
+                </div>
+            </div>
 
         </section>
     </main>
