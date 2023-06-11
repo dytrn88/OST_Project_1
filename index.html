@@ -23,35 +23,33 @@
             <h2>Tasks</h2>
             <div class="menu">
                 <div class="menu-buttons">
-                    <button class="menu-button" id="createTask">+ Create</button>
+                    <button class="menu-button" id="openDialog">+ Create</button>
                     <button class="menu-button" id="darkMode">Toggle</button>
                 </div>
-                <div id="newTask">
-                    <form>
-                        <!-- <input type="text" id="newTaskTitle" placeholder="Title"> -->
-                        <input type="text" id="newTaskContent" placeholder="Content">
 
-                        <!-- <button type="button" id="newTaskBtn">Test</button> -->
+                <div class="dialog-overlay"></div>
+                <div class="dialog-box">
+                    <div class="top-bar">
+                        <span class="close">&times;</span>
+                    </div>
+
+                    <form class="add-task-form" id="addTaskForm">
+                        <input class="input-field" id="newTaskTitle" type="text" placeholder="Add title">
+                        <input class="input-field" id="newTaskDate" type="date">
+                        <input class="input-field" id="newTaskContent" type="text" placeholder="Add content">
+                        <select id="newTaskPriority">
+                            <option value="" disabled selected>Select priority</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                            <option value="1">0</option>
+                        </select>
+                        <button class="new-task-btn" type="button" id="newTaskBtn">Submit</button>
                     </form>
                 </div>
-                <div id="testContainer"></div>
 
-
-                <div class="task-modal" id="taskModal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="create-content">
-                            <h3>What would you like to do next?</h3>
-                            <form class="add-task-form" id="addTaskForm">
-
-                                <input class="input-field" id="newTaskTitle" type="text" placeholder="Add title">
-                                <button type="button" id="newTaskBtn">Submit</button>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
+
 
 
             <div class="task-container" id="taskContainer">
@@ -72,90 +70,23 @@
                         <input type="text" id="selectedContent" readonly>
                         <br>
                         <label for="selectedDate">Date:</label>
-                        <input type="text" id="selectedDate" readonly>
+                        <input type="date" id="selectedDate" readonly>
                         <br>
                         <label for="selectedPriority">Priority:</label>
                         <input type="text" id="selectedPriority" readonly>
                         <br>
-
-                        <button type="submit">Update</button>
-
+                        <button class="update-task-btn" type="button" id="updateTaskBtn">Update</button>
                     </form>
                 </div>
+
             </div>
 
         </section>
+
     </main>
 
     <script src="index.js" type="module"></script>
-
-    <!-- to move to controllers/services-->
-
-    <script type="module">
-
-        // render tasks from data/tasks.js on the left
-
-        import { addTask, getTask, getTasks } from './js/services/data/tasks.js'
-
-        const taskTitlesElement = document.querySelector('#taskList');
-
-        function renderTaskTitles() {
-            taskTitlesElement.innerHTML = '';
-
-            getTasks().forEach(task => {
-                const taskEntry = `<p data-todo-id=
-                ${task.id}>${task.title}
-                <p/>`
-                taskTitlesElement.insertAdjacentHTML('beforeend', taskEntry);
-            });
-        }
-
-        // add a new task with submit button
-
-        const addTitleText = document.getElementById('newTaskTitle');
-        const addContentText = document.getElementById('newTaskContent');
-
-        function addNewTask() {
-            const newTaskTitle = addTitleText.value;
-            const newTaskContent = addContentText.value;
-
-            const newTask = {
-                title: newTaskTitle,
-                content: newTaskContent,
-
-            };
-
-            addTask(newTask);
-
-            renderTaskTitles();
-
-            addTitleText.value = '';
-        }
-
-        renderTaskTitles();
-
-        const newTaskButton = document.getElementById('newTaskBtn');
-        newTaskButton.addEventListener('click', addNewTask)
-
-        // render tasks on right side after selecting title
-
-        const selectedTitleElement = document.querySelector('#selectedTitle');
-        const selectedContentElement = document.querySelector('#selectedContent');
-        const selectedDateEelement = document.querySelector('#selectedDate');
-        const selectedPriorityElement = document.querySelector('#selectedPriority');
-
-        taskTitlesElement.addEventListener("click", (event) => {
-            if (event.target.dataset.todoId) {
-                const task = getTask(Number(event.target.dataset.todoId));
-                selectedTitleElement.value = task.title;
-                selectedContentElement.value = task.content;
-                selectedDateEelement.value = task.date;
-                selectedPriorityElement.value = task.priority;
-
-            }
-        })
-
-    </script>
+    <script src="./js/controllers/todo-controller.js" type="module"></script>
 
 </body>
 
