@@ -8,5 +8,4 @@ export function renderTaskTitles() {
         const taskEntry = `<p data-todo-id=${task.id}>${task.title}<p/>`
         taskTitlesElement.insertAdjacentHTML('beforeend', taskEntry);
     });
-
 }

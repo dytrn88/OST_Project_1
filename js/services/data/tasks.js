@@ -4,7 +4,7 @@ const tasks = [
     { id: 3, title: 'Clean up', content: 'Simplfy code via MVC concept', date: '2023-06-17', priority: 2 },
 ];
 
-const getTask = (id) => {
+const getTaskId = (id) => {
     return tasks.find(x => x.id === id);
 }
 
@@ -18,4 +18,4 @@ const getTasks = () => {
     return [...tasks];
 }
 
-export { getTask, addTask, getTasks }
+export { getTaskId, addTask, getTasks }
