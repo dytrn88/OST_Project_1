@@ -78,8 +78,6 @@ main {
     color: grey;
     text-decoration: none;
     cursor: pointer;
-    background-color:
-
 }
 
 .add-task-form {
@@ -115,7 +113,7 @@ main {
     background-color: aqua;
 }
 
-/* Task details */
+/* Task list */
 .update-task-btn {
     background-color: rgb(50, 50, 167);
     color: aliceblue;
@@ -125,4 +123,21 @@ main {
     cursor: pointer;
     height: 2rem;
     width: 5rem;
+}
+
+.task-item {
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* Task details */
+
+
+.task-detail {}
+
+.edit-task-form {
+    display: flex;
+    flex-direction: column;
+    font-size: large;
 }

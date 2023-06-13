@@ -62,25 +62,16 @@
 
                 <div class="task-detail" id="taskDetail">
                     <h3>Task details</h3>
-                    <form id="editTaskForm">
-                        <label for="selectedTitle">Title:</label>
+                    <form class="edit-task-form" id="editTaskForm">
                         <input type="text" id="selectedTitle" required>
-                        <br>
-                        <label for="selectedContent">Content:</label>
-                        <input type="text" id="selectedContent" readonly>
-                        <br>
-                        <label for="selectedDate">Date:</label>
-                        <input type="date" id="selectedDate" readonly>
-                        <br>
-                        <label for="selectedPriority">Priority:</label>
-                        <input type="text" id="selectedPriority" readonly>
-                        <br>
+                        <input type="text" id="selectedContent" required>
+                        <input type="date" id="selectedDate" required>
+                        <input type="text" id="selectedPriority" required>
                         <button class="update-task-btn" type="button" id="updateTaskBtn">Update</button>
                     </form>
                 </div>
 
             </div>
-            <div class="updated-task" id="updatedTask">test</div>
 
         </section>
 

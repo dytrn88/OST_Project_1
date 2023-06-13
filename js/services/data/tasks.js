@@ -4,9 +4,23 @@ const tasks = [
     { id: 3, title: 'Clean up', content: 'Simplfy code via MVC concept', date: '2023-06-17', priority: 2 },
 ];
 
-const getTaskId = (id) => {
+const getTasks = () => {
+    return [...tasks];
+}
+
+const getTask = (id) => {
     return tasks.find(x => x.id === id);
 }
+
+const updateTask = (id, updatedTask) => {
+    const index = tasks.findIndex((x) => x.id === id);
+    if (index !== -1) {
+        const updated = { ...tasks[index], ...updatedTask, id: tasks[index].id };
+        tasks[index] = updated;
+        return updated;
+    }
+    return null;
+};
 
 const addTask = (task) => {
     task.id = tasks.length + 1
@@ -14,8 +28,4 @@ const addTask = (task) => {
     return task;
 }
 
-const getTasks = () => {
-    return [...tasks];
-}
-
-export { getTaskId, addTask, getTasks }
+export { getTasks, getTask, addTask, updateTask }
