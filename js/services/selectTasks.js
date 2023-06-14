@@ -21,9 +21,14 @@ export function selectTask(event) {
     }
 }
 
+export function openTask(openTaskDetail) {
+    openTaskDetail.style.display = 'block';
+}
+
 const updateTaskBtn = document.getElementById('updateTaskBtn');
 
 updateTaskBtn.addEventListener('click', () => {
+
     const selectedTitleElement = document.querySelector('#selectedTitle');
     const selectedContentElement = document.querySelector('#selectedContent');
     const selectedDateElement = document.querySelector('#selectedDate');
@@ -38,12 +43,15 @@ updateTaskBtn.addEventListener('click', () => {
         priority: selectedPriorityElement.value,
     };
 
-    const updated = updateTask(taskId, updatedTask);
-    if (updated) {
-        console.log('Task updated successfully:', updated);
-        renderTaskTitles();
-    } else {
-        console.log('Failed to update task:', taskId);
+    const confirmation = confirm('Do you want to save the changes?');
+    if (confirmation) {
+        const updated = updateTask(taskId, updatedTask);
+        if (updated) {
+            console.log('Task updated successfully:', updated);
+            renderTaskTitles();
+        } else {
+            console.log('Failed to update task:', taskId);
+        }
     }
 });
 

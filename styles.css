@@ -102,15 +102,31 @@ main {
 .task-container {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
-    grid-gap: 1em
-}
-
-.task-container {
+    grid-gap: 1em;
+    border-radius: 10px;
     background-color: turquoise;
 }
 
 .task-container>div:nth-child(odd) {
     background-color: aqua;
+}
+
+.sort-btn-container {
+    background-color: orange;
+    display: flex;
+    flex: row;
+    justify-content: ;
+}
+
+.sort-task-btn {
+    background-color: rgb(50, 50, 167);
+    color: aliceblue;
+    border-radius: 5px;
+    border: solid;
+    border-color: white;
+    cursor: pointer;
+    height: 2rem;
+    width: 5rem;
 }
 
 /* Task list */
@@ -134,7 +150,9 @@ main {
 /* Task details */
 
 
-.task-detail {}
+.task-detail {
+    display: none;
+}
 
 .edit-task-form {
     display: flex;

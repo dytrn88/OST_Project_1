@@ -55,12 +55,18 @@
             <div class="task-container" id="taskContainer">
 
                 <div class="task-item" id="taskItem">
+
                     <h3>Task list</h3>
-                    <div style="color: darkgrey;">Add filter and sort function</div>
+                    <div class="sort-btn-container">
+                        <button class="sort-task-btn" type="button" id="sortTaskTitlesBtn">Sort by tasks</button>
+                        <button class="sort-task-btn" type="button" id="sortTaskDatesBtn">Sort by date</button>
+                    </div>
                     <div class="task-list" id="taskList"> </div>
                 </div>
 
                 <div class="task-detail" id="taskDetail">
+                    <button>&larr;</button>
+
                     <h3>Task details</h3>
                     <form class="edit-task-form" id="editTaskForm">
                         <input type="text" id="selectedTitle" required>

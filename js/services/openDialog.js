@@ -7,3 +7,4 @@ export function closeDialog(dialogOverlay, dialogBox) {
     dialogOverlay.style.display = 'none';
     dialogBox.style.display = 'none';
 }
+

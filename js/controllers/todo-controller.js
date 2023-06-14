@@ -1,6 +1,6 @@
-import { renderTaskTitles } from '../services/renderTasks.js';
+import { renderTaskTitles, sortTaskTitles, sortTaskDates } from '../services/renderTasks.js';
 import { addNewTask } from '../services/addTasks.js';
-import { selectTask } from '../services/selectTasks.js';
+import { selectTask, openTask } from '../services/selectTasks.js';
 import { showDialog, closeDialog } from '../services/openDialog.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,6 +17,7 @@ const closeBtn = document.querySelector('.close');
 const newTaskBtn = document.getElementById('newTaskBtn');
 
 const taskTitlesElement = document.querySelector('#taskList');
+const openTaskDetail = document.querySelector('.task-detail');
 
 // Open dialog with + Create button
 createBtn.addEventListener('click', () => {
@@ -40,9 +41,19 @@ newTaskBtn.addEventListener('click', () => {
     closeDialog(dialogOverlay, dialogBox);
 });
 
+// Sort by tasks
+document.getElementById('sortTaskTitlesBtn').addEventListener('click', () => {
+    sortTaskTitles();
+});
+document.getElementById('sortTaskDatesBtn').addEventListener('click', () => {
+    sortTaskDates();
+});
 
 // Select task to display on the right side
-taskTitlesElement.addEventListener('click', selectTask);
+taskTitlesElement.addEventListener('click', (event) => {
+    selectTask(event);
+    openTask(openTaskDetail);
+});
 
 // Edit the selected task
 
