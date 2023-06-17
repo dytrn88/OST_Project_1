@@ -1,7 +1,9 @@
-import { renderTaskTitles, sortTaskTitles, sortTaskDates } from '../services/renderTasks.js';
+import { renderTaskTitles, sortTaskTitles, sortTaskDates, sortTaskPriority } from '../services/renderTasks.js';
 import { addNewTask } from '../services/addTasks.js';
-import { selectTask, openTask } from '../services/selectTasks.js';
+import { selectTask, openTask, closeTask } from '../services/selectTasks.js';
 import { showDialog, closeDialog } from '../services/openDialog.js';
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     renderTaskTitles();
@@ -18,6 +20,8 @@ const newTaskBtn = document.getElementById('newTaskBtn');
 
 const taskTitlesElement = document.querySelector('#taskList');
 const openTaskDetail = document.querySelector('.task-detail');
+const closeTaskBtn = document.querySelector('.close-task');
+
 
 // Open dialog with + Create button
 createBtn.addEventListener('click', () => {
@@ -48,11 +52,20 @@ document.getElementById('sortTaskTitlesBtn').addEventListener('click', () => {
 document.getElementById('sortTaskDatesBtn').addEventListener('click', () => {
     sortTaskDates();
 });
+document.getElementById('sortTaskPriorityBtn').addEventListener('click', () => {
+    sortTaskPriority();
+});
 
-// Select task to display on the right side
+
+
+// Select task to display or close on the right side
 taskTitlesElement.addEventListener('click', (event) => {
     selectTask(event);
     openTask(openTaskDetail);
+});
+
+closeTaskBtn.addEventListener('click', () => {
+    closeTask(openTaskDetail);
 });
 
 // Edit the selected task

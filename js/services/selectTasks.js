@@ -25,6 +25,10 @@ export function openTask(openTaskDetail) {
     openTaskDetail.style.display = 'block';
 }
 
+export function closeTask(openTaskDetail) {
+    openTaskDetail.style.display = 'none';
+}
+
 const updateTaskBtn = document.getElementById('updateTaskBtn');
 
 updateTaskBtn.addEventListener('click', () => {

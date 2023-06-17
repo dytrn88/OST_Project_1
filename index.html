@@ -8,11 +8,13 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="styles.css">
+
 </head>
 
 <body>
     <header>
-        <h1>To do list</h1>
+        <h1>OST Project 1</h1>
     </header>
 
 
@@ -20,7 +22,7 @@
 
     <main>
         <section>
-            <h2>Tasks</h2>
+            <h2>To-do app</h2>
             <div class="menu">
                 <div class="menu-buttons">
                     <button class="menu-button" id="openDialog">+ Create</button>
@@ -33,16 +35,16 @@
                         <span class="close">&times;</span>
                     </div>
 
-                    <form class="add-task-form" id="addTaskForm">
+                    <form class="add-task-form-container" id="addTaskForm">
                         <input class="input-field" id="newTaskTitle" type="text" placeholder="Add title">
                         <input class="input-field" id="newTaskDate" type="date">
                         <input class="input-field" id="newTaskContent" type="text" placeholder="Add content">
-                        <select id="newTaskPriority">
+                        <select class="input-field" id="newTaskPriority">
                             <option value="" disabled selected>Select priority</option>
-                            <option value="3">3</option>
-                            <option value="2">2</option>
-                            <option value="1">1</option>
-                            <option value="1">0</option>
+                            <option value="3 - Urgent">3 - Urgent</option>
+                            <option value="2 - High">2- High</option>
+                            <option value="1 - Mid">1 - Mid</option>
+                            <option value="0 - Low">0 - Low</option>
                         </select>
                         <button class="new-task-btn" type="button" id="newTaskBtn">Submit</button>
                     </form>
@@ -53,26 +55,34 @@
 
 
             <div class="task-container" id="taskContainer">
-
                 <div class="task-item" id="taskItem">
 
                     <h3>Task list</h3>
                     <div class="sort-btn-container">
+                        <br>
                         <button class="sort-task-btn" type="button" id="sortTaskTitlesBtn">Sort by tasks</button>
                         <button class="sort-task-btn" type="button" id="sortTaskDatesBtn">Sort by date</button>
+                        <button class="sort-task-btn" type="button" id="sortTaskPriorityBtn">Sort by priority</button>
+
                     </div>
                     <div class="task-list" id="taskList"> </div>
                 </div>
 
                 <div class="task-detail" id="taskDetail">
-                    <button>&larr;</button>
+                    <button class="close-task">&larr;</button>
 
                     <h3>Task details</h3>
-                    <form class="edit-task-form" id="editTaskForm">
-                        <input type="text" id="selectedTitle" required>
-                        <input type="text" id="selectedContent" required>
-                        <input type="date" id="selectedDate" required>
-                        <input type="text" id="selectedPriority" required>
+                    <form class="edit-task-form-container" id="editTaskForm">
+                        <input class="edit-field" type="text" id="selectedTitle" required>
+                        <input class="edit-field" type="date" id="selectedDate" required>
+                        <input class="edit-field" type="text" id="selectedContent" required>
+                        <select class="edit-field" id="selectedPriority">
+                            <option value="" disabled selected>Select priority</option>
+                            <option value="3 - Urgent">3 - Urgent</option>
+                            <option value="2 - High">2 - High</option>
+                            <option value="1 - Mid">1 - Mid</option>
+                            <option value="1 - Low">0 - Low</option>
+                        </select>
                         <button class="update-task-btn" type="button" id="updateTaskBtn">Update</button>
                     </form>
                 </div>

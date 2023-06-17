@@ -25,3 +25,5 @@ export function addNewTask() {
 
     getNewTitle.value = '';
 }
+
+

@@ -1,16 +1,30 @@
-import { getTasks } from './data/tasks.js'
+import { getTasks } from './data/tasks.js';
 
+function getTaskElements(taskTitlesElement, task) {
+    const taskEntry = `<p class="task-title" data-todo-id="${task.id}">${task.title}</p>`;
+    const dateEntry = `<p data-todo-id="${task.id}">${task.date}</p>`;
+    const priorityEntry = `<p data-todo-id="${task.id}">${task.priority}</p>`;
+    const checkBox = `<input class="task-checkbox" type="checkbox" data-todo-id="${task.id}"${task.isDone ? ' checked' : ''}>`;
+
+    const taskContainer = document.createElement('div');
+    taskContainer.classList.add('task-list-container');
+
+    taskContainer.innerHTML = `
+        ${checkBox}
+        ${taskEntry}
+        ${priorityEntry}
+        ${dateEntry}
+    `;
+
+    taskTitlesElement.appendChild(taskContainer);
+
+}
 export function renderTaskTitles() {
     const taskTitlesElement = document.querySelector('#taskList');
     taskTitlesElement.innerHTML = '';
 
     getTasks().forEach(task => {
-        const taskEntry = `<p data-todo-id=${task.id}>${task.title}`
-        const dateEntry = `<p data-todo-id=${task.id}>${task.date}<p/>`
-
-        taskTitlesElement.insertAdjacentHTML('beforeend', taskEntry);
-        taskTitlesElement.insertAdjacentHTML('beforeend', dateEntry);
-
+        getTaskElements(taskTitlesElement, task);
     });
 }
 
@@ -31,11 +45,7 @@ export function sortTaskTitles() {
     isAscending = !isAscending;
 
     tasks.forEach(task => {
-        const taskEntry = `<p data-todo-id=${task.id}>${task.title}<p/>`;
-        const dateEntry = `<p data-todo-id=${task.id}>${task.date}<p/>`;
-
-        taskTitlesElement.insertAdjacentHTML('beforeend', taskEntry);
-        taskTitlesElement.insertAdjacentHTML('beforeend', dateEntry);
+        getTaskElements(taskTitlesElement, task);
     });
 }
 
@@ -46,27 +56,34 @@ export function sortTaskDates() {
     const tasks = getTasks();
 
     if (isAscending) {
-        tasks.sort((a, b) => {
-            const dateA = new Date(a.date);
-            const dateB = new Date(b.date);
-            return dateA - dateB;
-        });
+        tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
     } else {
-        tasks.sort((a, b) => {
-            const dateA = new Date(a.date);
-            const dateB = new Date(b.date);
-            return dateB - dateA;
-        });
+        tasks.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 
     isAscending = !isAscending;
 
     tasks.forEach(task => {
-        const taskEntry = `<p data-todo-id=${task.id}>${task.title}<p/>`;
-        const dateEntry = `<p data-todo-id=${task.id}>${task.date}<p/>`;
-
-        taskTitlesElement.insertAdjacentHTML('beforeend', taskEntry);
-        taskTitlesElement.insertAdjacentHTML('beforeend', dateEntry);
+        getTaskElements(taskTitlesElement, task);
     });
 }
 
+
+export function sortTaskPriority() {
+    const taskTitlesElement = document.querySelector('#taskList');
+    taskTitlesElement.innerHTML = '';
+
+    const tasks = getTasks();
+
+    if (isAscending) {
+        tasks.sort((a, b) => a.priority.localeCompare(b.priority));
+    } else {
+        tasks.sort((a, b) => b.priority.localeCompare(a.priority));
+    }
+
+    isAscending = !isAscending;
+
+    tasks.forEach(task => {
+        getTaskElements(taskTitlesElement, task);
+    });
+}
