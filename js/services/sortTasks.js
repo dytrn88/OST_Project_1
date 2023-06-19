@@ -1,12 +1,46 @@
-import { getTasks } from "./data/tasks";
-import { getTaskElements } from "./renderTasks";
+import { getTasks } from "./data/tasks.js";
+import { getTaskElements } from "../controllers/compileTasks.js";
 
-let isAscending = true;
-
-export function sortTaskPriority() {
+export function updateTaskList(tasks) {
     const taskTitlesElement = document.querySelector('#taskList');
     taskTitlesElement.innerHTML = '';
 
+    tasks.forEach(task => {
+        getTaskElements(taskTitlesElement, task);
+    });
+}
+
+let isAscending = true;
+
+export function sortTaskTitles() {
+    const tasks = getTasks();
+
+    if (isAscending) {
+        tasks.sort((a, b) => a.title.localeCompare(b.title));
+    } else {
+        tasks.sort((a, b) => b.title.localeCompare(a.title));
+    }
+
+    isAscending = !isAscending;
+
+    updateTaskList(tasks);
+}
+
+export function sortTaskDates() {
+    const tasks = getTasks();
+
+    if (isAscending) {
+        tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+    } else {
+        tasks.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    isAscending = !isAscending;
+
+    updateTaskList(tasks);
+}
+
+export function sortTaskPriority() {
     const tasks = getTasks();
 
     if (isAscending) {
@@ -17,7 +51,5 @@ export function sortTaskPriority() {
 
     isAscending = !isAscending;
 
-    tasks.forEach(task => {
-        getTaskElements(taskTitlesElement, task);
-    });
+    updateTaskList(tasks);
 }

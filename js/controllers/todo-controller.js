@@ -1,9 +1,10 @@
-import { renderTaskTitles, sortTaskTitles, sortTaskDates } from '../services/renderTasks.js';
+import { renderTaskTitles } from '../services/renderTasks.js';
+import { showDialog, closeDialog } from './openDialog.js';
 import { addNewTask } from '../services/addTasks.js';
 import { selectTask, openTask, closeTask } from '../services/selectTasks.js';
-import { showDialog, closeDialog } from '../services/openDialog.js';
-import { sortTaskPriority } from '../services/sortTasks.js';
-// import { applyFilter } from '../services/filterTasks.js';
+import { sortTaskDates, sortTaskPriority, sortTaskTitles } from '../services/sortTasks.js';
+import { applyFilter } from '../services/filterTasks.js';
+
 
 
 // Render Tasks
@@ -23,6 +24,10 @@ const newTaskBtn = document.getElementById('newTaskBtn');
 const taskTitlesElement = document.querySelector('#taskList');
 const openTaskDetail = document.querySelector('.task-detail');
 const closeTaskBtn = document.querySelector('.close-task');
+
+const sortTitleBtn = document.getElementById('sortTaskTitlesBtn')
+const sortDateBtn = document.getElementById('sortTaskDatesBtn')
+const sortPriorityBtn = document.getElementById('sortTaskPriorityBtn')
 
 const filterTasksBtn = document.querySelector('.filter-task-btn')
 
@@ -49,17 +54,20 @@ newTaskBtn.addEventListener('click', () => {
     closeDialog(dialogOverlay, dialogBox);
 });
 
-// Sort by tasks
-document.getElementById('sortTaskTitlesBtn').addEventListener('click', () => {
-    sortTaskTitles();
-});
-document.getElementById('sortTaskDatesBtn').addEventListener('click', () => {
-    sortTaskDates();
-});
-document.getElementById('sortTaskPriorityBtn').addEventListener('click', () => {
-    sortTaskPriority();
-});
 
+// Sort by tasks
+sortTitleBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    sortTaskTitles();
+})
+sortDateBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    sortTaskDates();
+})
+sortPriorityBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    sortTaskPriority();
+})
 
 
 // Select task to display or close on the right side
@@ -75,10 +83,11 @@ closeTaskBtn.addEventListener('click', () => {
 // Edit the selected task > get from selectTasks.js
 
 
-// Delete tasks that are ticked with checkbox
-
-filterTasksBtn.addEventListener('click', applyFilter)
-
+filterTasksBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    applyFilter();
+}
+);
 
 
 // Toggle for "Dark theme"

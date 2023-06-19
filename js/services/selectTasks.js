@@ -16,7 +16,6 @@ export function selectTask(event) {
         selectedDateElement.value = task.date;
         selectedPriorityElement.value = task.priority;
 
-        // Set the taskId as a data attribute on the update button
         updateTaskBtn.dataset.taskId = taskId;
     }
 }
