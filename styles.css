@@ -117,6 +117,11 @@ main {
     height: 100px;
 }
 
+.input-field-content {
+    min-width: 100%;
+    min-height: 150px;
+}
+
 .new-task-btn {
     margin-top: 1rem;
     width: 100px;
@@ -160,6 +165,7 @@ main {
     grid-template-columns: 50px 130px 130px 130px;
     grid-template-rows: 2rem;
     column-gap: 18px;
+    margin-bottom: 1rem;
 }
 
 .sort-task-btn {
@@ -182,6 +188,21 @@ main {
 
 }
 
+.filter-task-btn {
+    background-color: #fff;
+    border: solid;
+    border-color: #52b788;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    padding: 8px;
+    transition: background-color 0.3s
+}
+
+.filter-task-btn:hover {
+    background-color: lightgrey;
+}
+
 .task-list {}
 
 .task-list-container {
@@ -193,6 +214,7 @@ main {
 
 .task-title {
     font-weight: bold;
+    text-align: center;
 }
 
 .task-checkbox {
@@ -201,13 +223,11 @@ main {
     align-self: center;
     width: 16px;
     height: 16px;
-
+    cursor: pointer;
 }
 
 
-
 /* Task details right*/
-
 
 .task-detail {
     display: none;

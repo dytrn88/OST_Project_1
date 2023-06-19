@@ -1,10 +1,12 @@
-import { renderTaskTitles, sortTaskTitles, sortTaskDates, sortTaskPriority } from '../services/renderTasks.js';
+import { renderTaskTitles, sortTaskTitles, sortTaskDates } from '../services/renderTasks.js';
 import { addNewTask } from '../services/addTasks.js';
 import { selectTask, openTask, closeTask } from '../services/selectTasks.js';
 import { showDialog, closeDialog } from '../services/openDialog.js';
+import { sortTaskPriority } from '../services/sortTasks.js';
+// import { applyFilter } from '../services/filterTasks.js';
 
 
-
+// Render Tasks
 document.addEventListener('DOMContentLoaded', () => {
     renderTaskTitles();
 });
@@ -21,6 +23,8 @@ const newTaskBtn = document.getElementById('newTaskBtn');
 const taskTitlesElement = document.querySelector('#taskList');
 const openTaskDetail = document.querySelector('.task-detail');
 const closeTaskBtn = document.querySelector('.close-task');
+
+const filterTasksBtn = document.querySelector('.filter-task-btn')
 
 
 // Open dialog with + Create button
@@ -68,7 +72,12 @@ closeTaskBtn.addEventListener('click', () => {
     closeTask(openTaskDetail);
 });
 
-// Edit the selected task
+// Edit the selected task > get from selectTasks.js
+
+
+// Delete tasks that are ticked with checkbox
+
+filterTasksBtn.addEventListener('click', applyFilter)
 
 
 

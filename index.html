@@ -39,6 +39,8 @@
                         <input class="input-field" id="newTaskTitle" type="text" placeholder="Add title">
                         <input class="input-field" id="newTaskDate" type="date">
                         <input class="input-field" id="newTaskContent" type="text" placeholder="Add content">
+                        <textarea class="input-field-content name=" id="" cols=" 30" rows="10"
+                            placeholder="test"></textarea>
                         <select class="input-field" id="newTaskPriority">
                             <option value="" disabled selected>Select priority</option>
                             <option value="3 - Urgent">3 - Urgent</option>
@@ -63,7 +65,9 @@
                         <button class="sort-task-btn" type="button" id="sortTaskTitlesBtn">Sort by tasks</button>
                         <button class="sort-task-btn" type="button" id="sortTaskDatesBtn">Sort by date</button>
                         <button class="sort-task-btn" type="button" id="sortTaskPriorityBtn">Sort by priority</button>
-
+                    </div>
+                    <div>
+                        <button class="filter-task-btn">Filter completed tasks</button>
                     </div>
                     <div class="task-list" id="taskList"> </div>
                 </div>
@@ -83,6 +87,7 @@
                             <option value="1 - Mid">1 - Mid</option>
                             <option value="1 - Low">0 - Low</option>
                         </select>
+                        <input type="checkbox">
                         <button class="update-task-btn" type="button" id="updateTaskBtn">Update</button>
                     </form>
                 </div>
@@ -93,7 +98,6 @@
 
     </main>
 
-    <script src="index.js" type="module"></script>
     <script src="./js/controllers/todo-controller.js" type="module"></script>
 
 </body>

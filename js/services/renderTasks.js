@@ -1,6 +1,6 @@
 import { getTasks } from './data/tasks.js';
 
-function getTaskElements(taskTitlesElement, task) {
+export function getTaskElements(taskTitlesElement, task) {
     const taskEntry = `<p class="task-title" data-todo-id="${task.id}">${task.title}</p>`;
     const dateEntry = `<p data-todo-id="${task.id}">${task.date}</p>`;
     const priorityEntry = `<p data-todo-id="${task.id}">${task.priority}</p>`;
@@ -69,21 +69,4 @@ export function sortTaskDates() {
 }
 
 
-export function sortTaskPriority() {
-    const taskTitlesElement = document.querySelector('#taskList');
-    taskTitlesElement.innerHTML = '';
 
-    const tasks = getTasks();
-
-    if (isAscending) {
-        tasks.sort((a, b) => a.priority.localeCompare(b.priority));
-    } else {
-        tasks.sort((a, b) => b.priority.localeCompare(a.priority));
-    }
-
-    isAscending = !isAscending;
-
-    tasks.forEach(task => {
-        getTaskElements(taskTitlesElement, task);
-    });
-}
