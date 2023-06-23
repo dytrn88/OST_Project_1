@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="../css/styles.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
 </head>
 
 <body>
@@ -28,9 +30,7 @@
                 <div class="menu-buttons">
                     <button class="menu-button" id="openDialog">+ Create</button>
                     <button class="menu-button" id="darkMode">Toggle</button>
-
                 </div>
-                <div class="task-container-test">Test</div>
 
                 <div class="dialog-overlay"></div>
                 <div class="dialog-box">
@@ -51,14 +51,9 @@
                             <option value="0 - Low">0 - Low</option>
                         </select>
                         <button class="new-task-btn" type="button" id="newTaskBtn">Submit</button>
-                        <button class="ew-task-btn" id="testBtn">Test</button>
-
                     </form>
                 </div>
-
             </div>
-
-
 
             <div class="task-container" id="taskContainer">
                 <div class="task-item" id="taskItem">
@@ -75,6 +70,24 @@
                     </div>
                     <div class="task-list" id="taskList"> </div>
                 </div>
+
+                <script id="tasks-template" type="text/x-handlebars-template">
+                    <table class="table table-striped">
+                        <tbody>
+                        {{#each task}}
+                        <tr>
+                            <p class="task-title">{{title}}</p>
+                            <p>{{content}}</p>
+                            <p class="task-priority">{{priority}}</p>                
+                            <p class="task-date">{{dueDate}}</p>                
+                                <button>Delete</button>
+                            </td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </script>
+
 
                 <div class="task-detail" id="taskDetail">
                     <button class="close-task">&larr;</button>
@@ -102,7 +115,6 @@
     </main>
 
     <script src="../js/controller/index-controller.js" type="module"></script>
-
 
 </body>
 

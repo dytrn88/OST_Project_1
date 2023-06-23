@@ -1,66 +1,11 @@
+import { applyFilter, taskService } from '../services/task-service.js';
+
+import { closeDialog, getTaskElements, showDialog } from './task-controller.js';
+
 import { selectTask, openTask, closeTask } from '../services/selectTasks.js';
 import { sortTaskDates, sortTaskPriority, sortTaskTitles } from '../services/sortTasks.js';
 
-import { closeDialog, showDialog } from './task-controller.js';
 import { renderTaskTitles } from '../services/renderTasks.js';
-
-import { applyFilter, taskService } from '../services/task-service.js';
-import { addTask } from '../services/data/tasks.js';
-
-// test
-
-const getNewTitle = document.getElementById('newTaskTitle');
-const getNewContent = document.getElementById('newTaskContent');
-const getNewDate = document.getElementById('newTaskDate');
-const getNewPriority = document.getElementById('newTaskPriority');
-
-/* const newTaskTitle = getNewTitle.value;
-const newTaskContent = getNewContent.value;
-const newTaskDate = getNewDate.value;
-const newTaskPriority = getNewPriority.value; */
-
-/* const newTask = {
-    title: newTaskTitle,
-    content: newTaskContent,
-    date: newTaskDate,
-    priority: newTaskPriority,
-}; */
-
-const createTestBtn = document.getElementById('testBtn')
-createTestBtn.addEventListener('click', async (event) => {
-    event.preventDefault();
-    const newTaskTitle = getNewTitle.value;
-    const newTaskContent = getNewContent.value;
-    const newTaskDate = getNewDate.value;
-    const newTaskPriority = getNewPriority.value;
-
-    const newTask = {
-        title: newTaskTitle,
-        content: newTaskContent,
-        date: newTaskDate,
-        priority: newTaskPriority,
-    };
-
-    // console.log(newTask.title);
-    await taskService.addTask(newTask);
-    closeDialog(dialogOverlay, dialogBox);
-})
-
-
-
-// Render Tasks
-document.addEventListener('DOMContentLoaded', () => {
-    renderTaskTitles();
-});
-
-const createBtn = document.getElementById('openDialog');
-const darkModeBtn = document.getElementById('darkMode');
-
-const dialogOverlay = document.querySelector('.dialog-overlay');
-const dialogBox = document.querySelector('.dialog-box');
-const closeBtn = document.querySelector('.close');
-
-const newTaskBtn = document.getElementById('newTaskBtn');
 
 const taskTitlesElement = document.querySelector('#taskList');
 const openTaskDetail = document.querySelector('.task-detail');
@@ -73,7 +18,12 @@ const sortPriorityBtn = document.getElementById('sortTaskPriorityBtn')
 const filterTasksBtn = document.querySelector('.filter-task-btn')
 
 
-// Open dialog with + Create button
+// Open dialog with + Create button and close dialog
+const createBtn = document.getElementById('openDialog');
+const closeBtn = document.querySelector('.close');
+const dialogOverlay = document.querySelector('.dialog-overlay');
+const dialogBox = document.querySelector('.dialog-box');
+
 createBtn.addEventListener('click', () => {
     showDialog(dialogOverlay, dialogBox);
 });
@@ -89,11 +39,46 @@ dialogOverlay.addEventListener('click', (event) => {
 });
 
 
-// Submit and save a new Task
-/// newTaskBtn.addEventListener('click', () => {
-///     addNewTask();
-///     closeDialog(dialogOverlay, dialogBox);
-/// });
+// Submit and save a new Task within dialog
+const newTaskBtn = document.getElementById('newTaskBtn');
+
+const getNewTitle = document.getElementById('newTaskTitle');
+const getNewContent = document.getElementById('newTaskContent');
+const getNewDate = document.getElementById('newTaskDate');
+const getNewPriority = document.getElementById('newTaskPriority');
+
+newTaskBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const newTaskTitle = getNewTitle.value;
+    const newTaskContent = getNewContent.value;
+    const newTaskDate = getNewDate.value;
+    const newTaskPriority = getNewPriority.value;
+
+    const newTask = {
+        title: newTaskTitle,
+        content: newTaskContent,
+        date: newTaskDate,
+        priority: newTaskPriority,
+    };
+
+    await taskService.addTask(newTask);
+    closeDialog(dialogOverlay, dialogBox);
+})
+
+
+// Render Tasks
+const taskContainer = document.querySelector(".task-list");
+console.log(document.querySelector("#tasks-template"))
+
+const tasksRenderer = Handlebars.compile(document.querySelector("#tasks-template").innerHTML);
+
+async function renderAllTasks() {
+    taskContainer.innerHTML = tasksRenderer({ task: await taskService.getAllTask() });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderAllTasks();
+});
 
 
 // Sort by tasks
@@ -131,6 +116,8 @@ filterTasksBtn.addEventListener('click', (event) => {
 
 
 // Toggle for "Dark theme"
+const darkModeBtn = document.getElementById('darkMode');
+
 darkModeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 });

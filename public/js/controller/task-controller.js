@@ -8,17 +8,18 @@ export function closeDialog(dialogOverlay, dialogBox) {
     dialogBox.style.display = 'none';
 }
 
-// const checkBox = `<input id="1" class="task-checkbox" type="checkbox" data-todo-id="${task.id}"${task.isDone ? ' checked' : ''}>`;
-// ${checkBox}
-/* const checkBoxStatus = taskContainer.querySelector('.task-checkbox');
+/* const checkBox = `<input class="task-checkbox" type="checkbox" data-todo-id="${task.id}"${task.isDone ? ' checked' : ''}>`;
+${checkBox}
+const checkBoxStatus = taskContainer.querySelector('.task-checkbox');
 checkBoxStatus.addEventListener('change', () => {
     task.isDone = checkBoxStatus.checked;
 }); */
 
 export function getTaskElements(taskTitlesElement, task) {
     const taskEntry = `<p class="task-title" data-todo-id="${task.id}">${task.title}</p>`;
-    const dateEntry = `<p class="task-date" data-todo-id="${task.id}">${task.date}</p>`;
+    const dateEntry = `<p class="task-date" data-todo-id="${task.id}">${task.duedate}</p>`;
     const priorityEntry = `<p class="task-priority" data-todo-id="${task.id}">${task.priority}</p>`;
+
 
     const taskContainer = document.createElement('div');
     taskContainer.classList.add('task-list-container');
@@ -28,11 +29,9 @@ export function getTaskElements(taskTitlesElement, task) {
     ${priorityEntry}
     ${dateEntry}
     </br>
-   
+    
     `;
 
     taskTitlesElement.appendChild(taskContainer);
-
-
 }
 

@@ -203,7 +203,11 @@ main {
 }
 
 .task-list {
-    grid-column-start: 1;
+    display: grid;
+    grid-template-columns: 130px 130px 130px 130px 130px;
+    column-gap: 18px;
+    padding: 8px;
+    place-items: ;
 }
 
 .task-list-container {

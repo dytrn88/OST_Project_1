@@ -22,7 +22,7 @@ class TaskService {
         return httpService.ajax("GET", `/task/${id}`, undefined);
     }
 
-    async updateTask(_id, task) {
+    async updateTask(id, task) {
         return httpService.ajax("POST", `/task/${id}`, {
             title: task.title,
             content: task.content,
@@ -42,7 +42,7 @@ export const taskService = new TaskService();
 
 // Adding a task function
 
-export function addNewTask() {
+/* export function addNewTask() {
     const getNewTitle = document.getElementById('newTaskTitle');
     const getNewContent = document.getElementById('newTaskContent');
     const getNewDate = document.getElementById('newTaskDate');
@@ -65,7 +65,7 @@ export function addNewTask() {
     renderTaskTitles();
 
     getNewTitle.value = '';
-}
+} */
 
 
 // Filtering completed tasks function
