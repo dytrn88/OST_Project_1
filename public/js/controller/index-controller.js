@@ -5,6 +5,7 @@ import { closeDialog, showDialog } from './task-controller.js';
 import { renderTaskTitles } from '../services/renderTasks.js';
 
 import { applyFilter, taskService } from '../services/task-service.js';
+import { addTask } from '../services/data/tasks.js';
 
 // test
 
@@ -13,23 +14,34 @@ const getNewContent = document.getElementById('newTaskContent');
 const getNewDate = document.getElementById('newTaskDate');
 const getNewPriority = document.getElementById('newTaskPriority');
 
-const newTaskTitle = getNewTitle.value;
+/* const newTaskTitle = getNewTitle.value;
 const newTaskContent = getNewContent.value;
 const newTaskDate = getNewDate.value;
-const newTaskPriority = getNewPriority.value;
+const newTaskPriority = getNewPriority.value; */
 
-const newTask = {
+/* const newTask = {
     title: newTaskTitle,
     content: newTaskContent,
     date: newTaskDate,
     priority: newTaskPriority,
-};
-
-
+}; */
 
 const createTestBtn = document.getElementById('testBtn')
-createTestBtn.addEventListener('click', async () => {
-    console.log("test");
+createTestBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const newTaskTitle = getNewTitle.value;
+    const newTaskContent = getNewContent.value;
+    const newTaskDate = getNewDate.value;
+    const newTaskPriority = getNewPriority.value;
+
+    const newTask = {
+        title: newTaskTitle,
+        content: newTaskContent,
+        date: newTaskDate,
+        priority: newTaskPriority,
+    };
+
+    // console.log(newTask.title);
     await taskService.addTask(newTask);
     closeDialog(dialogOverlay, dialogBox);
 })

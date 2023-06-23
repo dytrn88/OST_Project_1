@@ -1,6 +1,5 @@
 import Datastore from 'nedb-promises'
 
-
 export class TaskManager {
     constructor(title, content, priority, duedate, state) {
         this.title = title;
@@ -14,18 +13,13 @@ export class TaskManager {
 
 export class TaskStore {
     constructor(db) {
-        const options = process.env.DB_TYPE === "FILE"
-            ? { filename: './data/task.db', autoload: true }
-            : {}
+        const options = process.env.DB_TYPE === "FILE" ? { filename: './data/task.db', autoload: true } : {}
         this.db = db || new Datastore(options);
     }
 
     async add(title, content, priority, duedate) {
         let task = new TaskManager(title, content, priority, duedate);
-        debugger;
-        console.log(task);
-        return this.db
-            .insert(task);
+        return this.db.insert(task);
     }
 
     async delete(id) {

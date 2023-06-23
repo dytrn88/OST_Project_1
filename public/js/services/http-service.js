@@ -4,7 +4,6 @@
 
 class HttpService {
     ajax(method, url, data, headers) {
-        console.log(url);
         const fetchHeaders = new Headers({ 'content-type': 'application/json', ...(headers || {}) });
         /*
                 if (valueStorage.getItem(tokenKey)) {
