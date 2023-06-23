@@ -1,5 +1,7 @@
+
 import { getTasks } from './data/tasks.js';
-import { getTaskElements } from '../controllers/compileTasks.js';
+import { getTaskElements } from '../controller/task-controller.js';
+
 
 export function renderTaskTitles() {
     const taskTitlesElement = document.querySelector('#taskList');

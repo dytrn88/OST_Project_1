@@ -1,9 +1,38 @@
-import { renderTaskTitles } from '../services/renderTasks.js';
-import { showDialog, closeDialog } from './openDialog.js';
-import { addNewTask } from '../services/addTasks.js';
 import { selectTask, openTask, closeTask } from '../services/selectTasks.js';
 import { sortTaskDates, sortTaskPriority, sortTaskTitles } from '../services/sortTasks.js';
-import { applyFilter } from '../services/filterTasks.js';
+
+import { closeDialog, showDialog } from './task-controller.js';
+import { renderTaskTitles } from '../services/renderTasks.js';
+
+import { applyFilter, taskService } from '../services/task-service.js';
+
+// test
+
+const getNewTitle = document.getElementById('newTaskTitle');
+const getNewContent = document.getElementById('newTaskContent');
+const getNewDate = document.getElementById('newTaskDate');
+const getNewPriority = document.getElementById('newTaskPriority');
+
+const newTaskTitle = getNewTitle.value;
+const newTaskContent = getNewContent.value;
+const newTaskDate = getNewDate.value;
+const newTaskPriority = getNewPriority.value;
+
+const newTask = {
+    title: newTaskTitle,
+    content: newTaskContent,
+    date: newTaskDate,
+    priority: newTaskPriority,
+};
+
+
+
+const createTestBtn = document.getElementById('testBtn')
+createTestBtn.addEventListener('click', async () => {
+    console.log("test");
+    await taskService.addTask(newTask);
+    closeDialog(dialogOverlay, dialogBox);
+})
 
 
 
@@ -49,25 +78,25 @@ dialogOverlay.addEventListener('click', (event) => {
 
 
 // Submit and save a new Task
-newTaskBtn.addEventListener('click', () => {
-    addNewTask();
-    closeDialog(dialogOverlay, dialogBox);
-});
+/// newTaskBtn.addEventListener('click', () => {
+///     addNewTask();
+///     closeDialog(dialogOverlay, dialogBox);
+/// });
 
 
 // Sort by tasks
 sortTitleBtn.addEventListener('click', (event) => {
     event.stopPropagation();
     sortTaskTitles();
-})
+});
 sortDateBtn.addEventListener('click', (event) => {
     event.stopPropagation();
     sortTaskDates();
-})
+});
 sortPriorityBtn.addEventListener('click', (event) => {
     event.stopPropagation();
     sortTaskPriority();
-})
+});
 
 
 // Select task to display or close on the right side
@@ -86,8 +115,7 @@ closeTaskBtn.addEventListener('click', () => {
 filterTasksBtn.addEventListener('click', (event) => {
     event.stopPropagation();
     applyFilter();
-}
-);
+});
 
 
 // Toggle for "Dark theme"

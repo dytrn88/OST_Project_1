@@ -1,5 +1,5 @@
 import { getTasks } from "./data/tasks.js";
-import { getTaskElements } from "../controllers/compileTasks.js";
+import { getTaskElements } from "../controller/task-controller.js";
 
 export function updateTaskList(tasks) {
     const taskTitlesElement = document.querySelector('#taskList');

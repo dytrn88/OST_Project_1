@@ -162,17 +162,15 @@ main {
 
 .sort-btn-container {
     display: grid;
-    grid-template-columns: 50px 130px 130px 130px;
-    grid-template-rows: 2rem;
+    grid-template-columns: 130px 130px 130px 130px 130px;
+    grid-template-rows: 2.5rem;
     column-gap: 18px;
     margin-bottom: 1rem;
+    margin-right: 1rem;
 }
 
 .sort-task-btn {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     background-color: #52b788;
     border: solid;
     border-color: white;
@@ -185,10 +183,11 @@ main {
 
 .sort-task-btn:hover {
     background-color: #40916c;
-
 }
 
 .filter-task-btn {
+    display: block;
+    margin-right: ;
     background-color: #fff;
     border: solid;
     border-color: #52b788;
@@ -203,23 +202,29 @@ main {
     background-color: lightgrey;
 }
 
-.task-list {}
+.task-list {
+    grid-column-start: 1;
+}
 
 .task-list-container {
     display: grid;
-    grid-template-columns: 50px 130px 130px 130px;
+    grid-template-columns: 130px 130px 130px 130px 130px;
     column-gap: 18px;
-    padding: 8px
+    padding: 8px;
+    place-items: ;
 }
 
 .task-title {
     font-weight: bold;
-    text-align: center;
+    text-align: start;
+}
+
+.task-date {
+    text-align: ;
 }
 
 .task-checkbox {
     display: flex;
-    justify-content: flex-start;
     align-self: center;
     width: 16px;
     height: 16px;
