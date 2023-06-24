@@ -23,7 +23,7 @@ export class TaskStore {
     }
 
     async delete(id) {
-        await this.db.update({ _id: id }, { $set: { state: 'DELETED' } })
+        await this.db.remove({}, { multi: true }, function (err, numRemoved) { });
         return this
             .get(id)
     }

@@ -204,7 +204,7 @@ main {
 
 .task-list {
     display: grid;
-    grid-template-columns: 130px 130px 130px 130px 130px;
+    grid-template-columns: 200px 130px 130px 130px 130px;
     column-gap: 18px;
     padding: 8px;
     place-items: ;
@@ -233,6 +233,23 @@ main {
     width: 16px;
     height: 16px;
     cursor: pointer;
+}
+
+.delete-task-btn {
+    display: block;
+    background-color: #52b788;
+    border: solid;
+    border-color: white;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    width: 1.5 rem;
+    padding: 8px;
+    transition: background-color 0.3s
+}
+
+.sort-task-btn:hover {
+    background-color: #40916c;
 }
 
 

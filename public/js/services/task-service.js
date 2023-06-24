@@ -1,7 +1,7 @@
 import { addTask, getTasks } from './data/tasks.js';
 import { httpService } from './http-service.js'
 import { renderTaskTitles } from './renderTasks.js';
-import { getTaskElements } from '../controller/task-controller.js';
+import { getTaskElements } from '../controller/controller-components.js';
 
 class TaskService {
     async getAllTask() {

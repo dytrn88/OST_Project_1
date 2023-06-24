@@ -77,10 +77,10 @@
                         {{#each task}}
                         <tr>
                             <p class="task-title">{{title}}</p>
-                            <p>{{content}}</p>
                             <p class="task-priority">{{priority}}</p>                
-                            <p class="task-date">{{dueDate}}</p>                
-                                <button>Delete</button>
+                            <p class="task-date">{{dueDate}}</p>
+                            <input class="task-checkbox" type="checkbox">                
+                            <button data-id="{{_id}}" class="delete-task-btn" id="deleteTaskBtn">Delete</button>
                             </td>
                         </tr>
                         {{/each}}

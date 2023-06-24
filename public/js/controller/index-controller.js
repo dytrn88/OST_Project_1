@@ -1,6 +1,6 @@
 import { applyFilter, taskService } from '../services/task-service.js';
 
-import { closeDialog, getTaskElements, showDialog } from './task-controller.js';
+import { closeDialog, getTaskElements, showDialog } from './controller-components.js';
 
 import { selectTask, openTask, closeTask } from '../services/selectTasks.js';
 import { sortTaskDates, sortTaskPriority, sortTaskTitles } from '../services/sortTasks.js';
@@ -68,8 +68,6 @@ newTaskBtn.addEventListener('click', async (event) => {
 
 // Render Tasks
 const taskContainer = document.querySelector(".task-list");
-console.log(document.querySelector("#tasks-template"))
-
 const tasksRenderer = Handlebars.compile(document.querySelector("#tasks-template").innerHTML);
 
 async function renderAllTasks() {
@@ -94,6 +92,15 @@ sortPriorityBtn.addEventListener('click', (event) => {
     event.stopPropagation();
     sortTaskPriority();
 });
+
+
+// Delete task
+const deleteTaskBtn = document.getElementById('deleteTaskBtn');
+console.log(document.getElementById('deleteTaskBtn'))
+deleteTaskBtn.addEventListener('click', async (event) => {
+    event.stopPropagation();
+    await taskService.deleteTask()
+})
 
 
 // Select task to display or close on the right side

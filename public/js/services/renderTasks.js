@@ -1,6 +1,6 @@
 
 import { getTasks } from './data/tasks.js';
-import { getTaskElements } from '../controller/task-controller.js';
+import { getTaskElements } from '../controller/controller-components.js';
 
 
 export function renderTaskTitles() {
