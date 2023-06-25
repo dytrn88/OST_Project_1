@@ -67,12 +67,13 @@ const taskContainer = document.querySelector(".task-list");  // desination to di
 const tasksRenderer = Handlebars.compile(document.querySelector("#tasks-template").innerHTML); // Handlebar compiler
 
 async function renderAllTasks() {
-    taskContainer.innerHTML = tasksRenderer({ task: await taskService.getAllTask() });
+    taskContainer.innerHTML = tasksRenderer({ task: await taskService.getAllTask(defaultSortOption) });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     renderAllTasks();
 });
+
 
 
 // Select and display a task on dialog "Task details"
@@ -139,8 +140,24 @@ editTaskDetail.addEventListener('click', async (event) => {
 });
 
 
-// Sort by tasks
+// Apply sort function by task, date or priority
+let defaultSortOption = "desc"; // default sort option by duedate
 
+const sortByTaskBtn = document.querySelector('#sortTaskDatesBtn');
+console.log(document.querySelector('#sortByTaskBtn'))
+
+sortByTaskBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    if (defaultSortOption === "asc") {
+        defaultSortOption = "desc";
+    } else {
+        defaultSortOption = "asc";
+    }
+
+    await renderAllTasks();
+
+});
 
 
 // Toggle for "Dark theme"

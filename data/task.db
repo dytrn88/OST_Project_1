@@ -4,6 +4,7 @@
 {"title":"Another test","content":"Funky bunky","priority":"0 - Low","addDate":{"$$date":1687696644754},"state":"DELETED","_id":"EUd0XJJZOEKo6UkX"}
 {"title":"Render test round 3","content":"Seems to work","priority":"1 - Mid","duedate":"2023-06-24","addDate":{"$$date":1687717701258},"state":"DELETED","_id":"JlpdW3nU8lBSRJpb"}
 {"title":"","content":"","priority":"","duedate":null,"addDate":{"$$date":1687706258597},"state":"DELETED","_id":"NCoXVcRjE38lTxyR"}
+{"title":"Test","content":"Test","priority":"3 - Urgent","duedate":null,"addDate":{"$$date":1687723536533},"state":"DELETED","_id":"NL4dN8LWQC3ceCCg"}
 {"title":"Date test","content":"Works?","priority":"3 - Urgent","duedate":"2023-06-25","addDate":{"$$date":1687718021834},"state":"OK","_id":"QPLnvG3aFdQvgr4f"}
 {"title":"Date sort test works?","content":"Placeholder","priority":"3 - Urgent","duedate":"2023-06-30","addDate":{"$$date":1687718328871},"state":"OK","_id":"QdsDPecvznfyO4mP"}
 {"title":"Another date test","content":"Test","priority":"3 - Urgent","duedate":"2023-06-25","addDate":{"$$date":1687701545757},"state":"OK","_id":"VhwENju22IR1SlSI"}

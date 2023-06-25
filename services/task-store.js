@@ -46,28 +46,19 @@ export class TaskStore {
         return this.get(id);
     }
 
-    async all(query) {
-        if (query == "sortByDate") {
-            return this.db
-                .find({})
-                .sort({ duedate: -1 })
-                .exec();
-        }
+    async all(query, sortBy) {
+        let dbQuery = {
+            $and: [{ state: { $ne: "DELETED" } }],
+        };
 
-        else if (query == "sortByTask") {
-            return this.db
-                .find({})
-                .sort({ title: -1 })
-                .exec();
+        if (query === "sortByDate") {
+            return this.db.find(dbQuery).sort({ duedate: sortBy }).exec();
         }
-
+        else if (query === "sortByTask") {
+            return this.db.find(dbQuery).sort({ title: sortBy }).exec();
+        }
         else {
-            return this.db
-                .find({
-                    $and: [{ "state": { $ne: "DELETED" } }],
-                })
-                .sort({ duedate: -1 })
-                .exec();
+            return this.db.find(dbQuery).sort({ duedate: sortBy }).exec();
         }
     }
 }

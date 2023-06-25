@@ -4,8 +4,8 @@ import { renderTaskTitles } from './renderTasks.js';
 import { getTaskElements } from '../controller/controller-components.js';
 
 class TaskService {
-    async getAllTask() {
-        return httpService.ajax("GET", "/task/", undefined);
+    async getAllTask(sortBy) {
+        return httpService.ajax("GET", `/task/?sortBy=${sortBy}`);
     }
 
     async addTask(task) {
@@ -41,7 +41,7 @@ export const taskService = new TaskService();
 
 // Filtering completed tasks function 
 
-let isFilterActive = false;
+/* let isFilterActive = false;
 
 export function applyFilter() {
     const taskTitlesElement = document.querySelector('#taskList');
@@ -61,4 +61,4 @@ export function applyFilter() {
     }
 
     isFilterActive = !isFilterActive;
-}
+} */
