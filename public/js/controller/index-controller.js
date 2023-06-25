@@ -138,7 +138,7 @@ editTaskDetail.addEventListener('click', async (event) => {
     if (event.target.classList.contains('update-task-btn')) {
         console.log("test")
 
-        const id = event.target.querySelector('#selectedId')
+        const id = event.target.querySelector('.selectedId')
 
         console.log(id); // Example: log the ID value
     }
