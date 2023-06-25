@@ -25,6 +25,7 @@ class TaskService {
 
     async updateTask(id, task) {
         return httpService.ajax("POST", `/task/${id}`, {
+            id: task.id,
             title: task.title,
             content: task.content,
             priority: task.priority,
@@ -40,35 +41,7 @@ class TaskService {
 export const taskService = new TaskService();
 
 
-// Adding a task function
-
-/* export function addNewTask() {
-    const getNewTitle = document.getElementById('newTaskTitle');
-    const getNewContent = document.getElementById('newTaskContent');
-    const getNewDate = document.getElementById('newTaskDate');
-    const getNewPriority = document.getElementById('newTaskPriority');
-
-    const newTaskTitle = getNewTitle.value;
-    const newTaskContent = getNewContent.value;
-    const newTaskDate = getNewDate.value;
-    const newTaskPriority = getNewPriority.value;
-
-    const newTask = {
-        title: newTaskTitle,
-        content: newTaskContent,
-        date: newTaskDate,
-        priority: newTaskPriority,
-    };
-
-    addTask(newTask);
-
-    renderTaskTitles();
-
-    getNewTitle.value = '';
-} */
-
-
-// Filtering completed tasks function
+// Filtering completed tasks function 
 
 let isFilterActive = false;
 

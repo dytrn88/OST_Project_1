@@ -87,35 +87,40 @@
                     </table>
                 </script>
 
+                <div class="task-detail-container">
+                    <div class="task-detail" id="taskDetail">
+                        <button class="close-task">&larr;</button>
+                        <h3>Task details</h3>
+                        <form class="edit-task-form-container" id="editTaskForm">
+                            <p class="selected-id" id=" selectedId"></p>
 
-                <div class="task-detail" id="taskDetail">
-                    <button class="close-task">&larr;</button>
+                            <input class="edit-field" type="text" id="selectedId" required>
+                            <input class="edit-field" type="text" id="selectedTitle" required>
+                            <input class="edit-field" type="date" id="selectedDate" required>
+                            <input class="edit-field" type="text" id="selectedContent" required>
+                            <select class="edit-field" id="selectedPriority">
+                                <option value="" disabled selected>Select priority</option>
+                                <option value="3 - Urgent">3 - Urgent</option>
+                                <option value="2 - High">2 - High</option>
+                                <option value="1 - Mid">1 - Mid</option>
+                                <option value="1 - Low">0 - Low</option>
+                            </select>
+                            <button data-id="{{_id}}" class="update-task-btn" type="button"
+                                id="updateTaskBtn">Update</button>
+                        </form>
+                    </div>
 
-                    <h3>Task details</h3>
-                    <form class="edit-task-form-container" id="editTaskForm">
-                        <input class="edit-field" type="text" id="selectedTitle" required>
-                        <input class="edit-field" type="date" id="selectedDate" required>
-                        <input class="edit-field" type="text" id="selectedContent" required>
-                        <select class="edit-field" id="selectedPriority">
-                            <option value="" disabled selected>Select priority</option>
-                            <option value="3 - Urgent">3 - Urgent</option>
-                            <option value="2 - High">2 - High</option>
-                            <option value="1 - Mid">1 - Mid</option>
-                            <option value="1 - Low">0 - Low</option>
-                        </select>
-                        <button class="update-task-btn" type="button" id="updateTaskBtn">Update</button>
-                    </form>
-                </div>
-
-                <script id="edit-tasks-template" type="text/x-handlebars-template">
+                    <script id="edit-tasks-template" type="text/x-handlebars-template">
                     <div class="edit-task-list-container">
                         <p class="edit-id">{{_id}}</p>
                         <p class="edit-title">{{title}}</p>                           
                         <p class="edit-content">{{content}}</p>                                                               
                         <p class="edit-title">{{priority}}</p>                                                               
                         <p class="edit-duedate">{{duedate}}</p>                                                               
-                     </div>                                
-                </script>
+                    </div>                                
+                    </script>
+
+                </div>
 
             </div>
 

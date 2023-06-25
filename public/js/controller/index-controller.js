@@ -100,11 +100,14 @@ taskFormElement.addEventListener('click', async (event) => {
             editTaskForm.innerHTML = renderTask(await taskService.getTask(taskId)) // get server response to retrieve task elements
         }
 
+        const selectedIdElement = document.querySelector('#selectedId');
         const selectedTitleElement = document.querySelector('#selectedTitle'); // direct the selected task to the input form
         const selectedContentElement = document.querySelector('#selectedContent');
         const selectedDueDateElement = document.querySelector('#selectedDate');
         const selectedPriorityElement = document.querySelector('#selectedPriority');
 
+        selectedIdElement.value = task._id;
+        console.log(selectedIdElement.value)
         selectedTitleElement.value = task.title;
         selectedContentElement.value = task.content;
         selectedDueDateElement.value = task.duedate; // duedate format needs to be fixed, I guess need a handlebar helper
@@ -115,6 +118,7 @@ taskFormElement.addEventListener('click', async (event) => {
     }
 
     if (event.target.classList.contains('delete-task-btn')) { // read delete button
+
         const taskId = event.target.parentElement.dataset.id;
         console.log(taskId)
 
@@ -126,12 +130,37 @@ closeTaskBtn.addEventListener('click', () => {
     closeTask(openTaskDetail);
 });
 
-
 // Edit and update the selected task
+const editTaskDetail = document.querySelector('.task-detail-container');
+// const updateTaskBtn = document.querySelector('.update-task-btn');
 
-const orderId = window.location.hash.substring(1);
-console.log(orderId)
+editTaskDetail.addEventListener('click', async (event) => {
+    if (event.target.classList.contains('update-task-btn')) {
+        console.log("test")
 
+        const id = event.target.querySelector('#selectedId')
+
+        console.log(id); // Example: log the ID value
+    }
+
+
+    const selectedTitleElement = document.querySelector('#selectedTitle');
+    const selectedContentElement = document.querySelector('#selectedContent');
+    const selectedDateElement = document.querySelector('#selectedDate');
+    const selectedPriorityElement = document.querySelector('#selectedPriority');
+    console.log(selectedTitleElement.value) // Test of new value succeeded
+
+    const updatedTask = {
+        title: selectedTitleElement.value,
+        content: selectedContentElement.value,
+        duedate: selectedDateElement.value,
+        priority: selectedPriorityElement.value,
+    };
+
+    console.log(updatedTask)
+
+    await taskService.updateTask(updatedTask)
+});
 
 
 // Sort by tasks

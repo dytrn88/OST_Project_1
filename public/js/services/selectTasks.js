@@ -23,7 +23,7 @@ export function selectTask(event) {
 
 const updateTaskBtn = document.getElementById('updateTaskBtn');
 
-updateTaskBtn.addEventListener('click', () => {
+/* updateTaskBtn.addEventListener('click', () => {
 
     const selectedTitleElement = document.querySelector('#selectedTitle');
     const selectedContentElement = document.querySelector('#selectedContent');
@@ -49,5 +49,5 @@ updateTaskBtn.addEventListener('click', () => {
             console.log('Failed to update task:', taskId);
         }
     }
-});
+}); */
 
