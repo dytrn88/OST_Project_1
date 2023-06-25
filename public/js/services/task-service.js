@@ -9,7 +9,6 @@ class TaskService {
     }
 
     async addTask(task) {
-        console.log(task.duedate)
         return httpService.ajax("POST", "/task/", {
             title: task.title,
             content: task.content,
@@ -23,9 +22,8 @@ class TaskService {
         return httpService.ajax("GET", `/task/${id}`, undefined);
     }
 
-    async updateTask(id, task) {
-        return httpService.ajax("POST", `/task/${id}`, {
-            id: task.id,
+    async updateTask(_id, task) {
+        return httpService.ajax("POST", `/task/${_id}`, {
             title: task.title,
             content: task.content,
             priority: task.priority,

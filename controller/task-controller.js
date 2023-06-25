@@ -23,7 +23,8 @@ export class TaskController {
     };
 
     updateTask = async (req, res) => {
-        res.json(await todoStore.update(
+        res.json(await taskStore.update(
+            req.params.id,
             req.body.title,
             req.body.content,
             req.body.priority,

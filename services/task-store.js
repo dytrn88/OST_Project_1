@@ -5,7 +5,7 @@ export class TaskManager {
         this.title = title;
         this.content = content;
         this.priority = priority;
-        this.duedate = duedate;
+        this.duedate = new Date(duedate);
         this.addDate = new Date();
         this.state = "OK";
     }
@@ -46,11 +46,29 @@ export class TaskStore {
         return this.get(id);
     }
 
-    async all() {
-        return this.db
-            .find({})
-            .sort({ taskDate: -1 })
-            .exec();
+    async all(query) {
+        if (query == "sortByDate") {
+            return this.db
+                .find({})
+                .sort({ duedate: -1 })
+                .exec();
+        }
+
+        else if (query == "sortByTask") {
+            return this.db
+                .find({})
+                .sort({ title: -1 })
+                .exec();
+        }
+
+        else {
+            return this.db
+                .find({
+                    $and: [{ "state": { $ne: "DELETED" } }],
+                })
+                .sort({ duedate: -1 })
+                .exec();
+        }
     }
 }
 

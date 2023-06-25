@@ -77,10 +77,9 @@
                         <div data-id="{{_id}}" class="task-list-container">
                             <input class="task-checkbox" type="checkbox">             
                             <p class="task-title">{{title}}</p>
+                            <p class="task-date">{{duedate}}</p>
                             <p class="task-priority">{{priority}}</p>                
-                            <p class="task-date">{{dueDate}}</p>
-                            <button data-id="{{_id}}" class="edit-task-btn">Edit</button>                                            
-                            <button data-id="{{_id}}" class="delete-task-btn">Delete</button>                                            
+                            <button data-id="{{_id}}" class="edit-task-btn">Edit</button>                                                                                     
                         </div>
                         {{/each}}
                         </tbody>
@@ -91,32 +90,26 @@
                     <div class="task-detail" id="taskDetail">
                         <button class="close-task">&larr;</button>
                         <h3>Task details</h3>
-                        <form class="edit-task-form-container" id="editTaskForm">
-                            <p class="selected-id" id=" selectedId"></p>
-
-                            <input class="edit-field" type="text" id="selectedId" required>
-                            <input class="edit-field" type="text" id="selectedTitle" required>
-                            <input class="edit-field" type="date" id="selectedDate" required>
-                            <input class="edit-field" type="text" id="selectedContent" required>
-                            <select class="edit-field" id="selectedPriority">
-                                <option value="" disabled selected>Select priority</option>
-                                <option value="3 - Urgent">3 - Urgent</option>
-                                <option value="2 - High">2 - High</option>
-                                <option value="1 - Mid">1 - Mid</option>
-                                <option value="1 - Low">0 - Low</option>
-                            </select>
-                            <button data-id="{{_id}}" class="update-task-btn" type="button"
-                                id="updateTaskBtn">Update</button>
-                        </form>
+                        <div class="edit-task-container"> Hier werden Tasks ausgegeben</div>
                     </div>
 
                     <script id="edit-tasks-template" type="text/x-handlebars-template">
-                    <div class="edit-task-list-container">
-                        <p class="edit-id">{{_id}}</p>
-                        <p class="edit-title">{{title}}</p>                           
-                        <p class="edit-content">{{content}}</p>                                                               
-                        <p class="edit-title">{{priority}}</p>                                                               
-                        <p class="edit-duedate">{{duedate}}</p>                                                               
+                    <div data-id="{{_id}}" class="edit-task-list-container">                        
+                        <input class="edit-field" id="editTitle" value="{{title}}">  
+                        <textarea class="edit-field" id="editContent" cols="30" rows="5">{{content}}</textarea>                        
+                        <input class="edit-field" id="editDueDate" type="date" value="{{duedate}}">  
+                        <select class="edit-field" id="editPriority">
+                            <option disabled selected>{{priority}}</option>
+                            <option>3 - Urgent</option>
+                            <option>2 - High</option>
+                            <option>1 - Mid</option>
+                            <option>0 - Low</option>
+                        </select>    
+                        <div data-id="{{_id}}" class="edit-task-btn-container">
+                            <button data-id="{{_id}}" class="update-task-btn" id="updateTaskBtn">Update</button>
+                            <button data-id="{{_id}}" class="delete-task-btn">Delete</button>                                            
+                        </div>
+
                     </div>                                
                     </script>
 

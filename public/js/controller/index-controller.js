@@ -1,17 +1,14 @@
-import { applyFilter, taskService } from '../services/task-service.js';
+import { taskService } from '../services/task-service.js';
 
 import { closeDialog, closeTask, getTaskElements, openTask, showDialog } from './controller-components.js';
 
-import { selectTask } from '../services/selectTasks.js';
-import { sortTaskDates, sortTaskPriority, sortTaskTitles } from '../services/sortTasks.js';
+/* import { selectTask } from '../services/selectTasks.js'; */
 
-/* import { renderTaskTitles } from '../services/renderTasks.js'; */
-
-const sortTitleBtn = document.getElementById('sortTaskTitlesBtn')
+/* const sortTitleBtn = document.getElementById('sortTaskTitlesBtn')
 const sortDateBtn = document.getElementById('sortTaskDatesBtn')
-const sortPriorityBtn = document.getElementById('sortTaskPriorityBtn')
+const sortPriorityBtn = document.getElementById('sortTaskPriorityBtn') */
 
-const filterTasksBtn = document.querySelector('.filter-task-btn')
+/* const filterTasksBtn = document.querySelector('.filter-task-btn') */
 
 
 // Open dialog with + Create button and close dialog
@@ -55,9 +52,8 @@ newTaskBtn.addEventListener('click', async (event) => {
     const newTask = {
         title: newTaskTitle,
         content: newTaskContent,
-        date: newTaskDate,
+        duedate: newTaskDate,
         priority: newTaskPriority,
-        state: "OK"
     };
 
     await taskService.addTask(newTask);
@@ -85,45 +81,24 @@ const taskFormElement = document.querySelector('.task-list'); // trigger to fire
 const openTaskDetail = document.querySelector('.task-detail');
 const closeTaskBtn = document.querySelector('.close-task');
 
-const editTaskForm = document.querySelector('.edit-test-container') // desination to display the selected task
+const editTaskForm = document.querySelector('.edit-task-container') // desination to display the selected task
 const renderTask = Handlebars.compile(document.querySelector("#edit-tasks-template").innerHTML); // Handlebar compiler
 
 taskFormElement.addEventListener('click', async (event) => {
     if (event.target.classList.contains('edit-task-btn')) { // read edit button
 
         const taskId = event.target.parentElement.dataset.id; // find the id assigned within handlebar template
-        console.log(taskId)
         const task = await taskService.getTask(taskId)
-        console.log(task.duedate) // duedate format seems wrong
+        console.log(task.duedate) // duedate format to be formatted with handlebar helper
 
         async function retrieveTask() {
             editTaskForm.innerHTML = renderTask(await taskService.getTask(taskId)) // get server response to retrieve task elements
         }
 
-        const selectedIdElement = document.querySelector('#selectedId');
-        const selectedTitleElement = document.querySelector('#selectedTitle'); // direct the selected task to the input form
-        const selectedContentElement = document.querySelector('#selectedContent');
-        const selectedDueDateElement = document.querySelector('#selectedDate');
-        const selectedPriorityElement = document.querySelector('#selectedPriority');
-
-        selectedIdElement.value = task._id;
-        console.log(selectedIdElement.value)
-        selectedTitleElement.value = task.title;
-        selectedContentElement.value = task.content;
-        selectedDueDateElement.value = task.duedate; // duedate format needs to be fixed, I guess need a handlebar helper
-        selectedPriorityElement.value = task.priority;
-
         retrieveTask() // render and display the selected task on in the dialog 
         openTask(openTaskDetail) // open dialog for task details
     }
-
-    if (event.target.classList.contains('delete-task-btn')) { // read delete button
-
-        const taskId = event.target.parentElement.dataset.id;
-        console.log(taskId)
-
-        await taskService.deleteTask(taskId)
-    }
+    renderAllTasks();
 })
 
 closeTaskBtn.addEventListener('click', () => {
@@ -131,61 +106,42 @@ closeTaskBtn.addEventListener('click', () => {
 });
 
 // Edit and update the selected task
-const editTaskDetail = document.querySelector('.task-detail-container');
-// const updateTaskBtn = document.querySelector('.update-task-btn');
+const editTaskDetail = document.querySelector('.edit-task-container');
 
 editTaskDetail.addEventListener('click', async (event) => {
-    if (event.target.classList.contains('update-task-btn')) {
-        console.log("test")
+    if (event.target.classList.contains('update-task-btn')) { // read update button
 
-        const id = event.target.querySelector('.selectedId')
+        const taskId = event.target.parentElement.dataset.id; // find the id assigned within handlebar template
 
-        console.log(id); // Example: log the ID value
+        const editTitleElement = document.querySelector('#editTitle'); // read input class
+        const editContentElement = document.querySelector('#editContent');
+        const editDueDateElement = document.querySelector('#editDueDate');
+        const editPriorityElement = document.querySelector('#editPriority');
+
+        const updatedTask = { // read new value from input fields
+            title: editTitleElement.value,
+            content: editContentElement.value,
+            duedate: editDueDateElement.value,
+            priority: editPriorityElement.value,
+        };
+
+        await taskService.updateTask(taskId, updatedTask) // get server response to update task elements
+        renderAllTasks();
     }
 
+    if (event.target.classList.contains('delete-task-btn')) { // read delete button
 
-    const selectedTitleElement = document.querySelector('#selectedTitle');
-    const selectedContentElement = document.querySelector('#selectedContent');
-    const selectedDateElement = document.querySelector('#selectedDate');
-    const selectedPriorityElement = document.querySelector('#selectedPriority');
-    console.log(selectedTitleElement.value) // Test of new value succeeded
+        const taskId = event.target.parentElement.dataset.id;
 
-    const updatedTask = {
-        title: selectedTitleElement.value,
-        content: selectedContentElement.value,
-        duedate: selectedDateElement.value,
-        priority: selectedPriorityElement.value,
-    };
-
-    console.log(updatedTask)
-
-    await taskService.updateTask(updatedTask)
+        await taskService.deleteTask(taskId) // get server response to set DELETE state the selected task
+        renderAllTasks();
+    }
 });
 
 
 // Sort by tasks
-sortTitleBtn.addEventListener('click', (event) => {
-    event.stopPropagation();
-    sortTaskTitles();
-});
-sortDateBtn.addEventListener('click', (event) => {
-    event.stopPropagation();
-    sortTaskDates();
-});
-sortPriorityBtn.addEventListener('click', (event) => {
-    event.stopPropagation();
-    sortTaskPriority();
-});
 
 
-// Edit the selected task > get from selectTasks.js
-
-
-/* filterTasksBtn.addEventListener('click', (event) => {
-    event.stopPropagation();
-    applyFilter();
-});
- */
 
 // Toggle for "Dark theme"
 const darkModeBtn = document.getElementById('darkMode');

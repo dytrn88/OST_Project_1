@@ -212,7 +212,7 @@ main {
 
 .task-list-container {
     display: grid;
-    grid-template-columns: 50px 200px 100px 180px 70px 70px;
+    grid-template-columns: 50px 200px 100px 180px 70px;
     grid-template-rows: 2.5rem;
     column-gap: 18px;
     padding: 8px;
@@ -257,27 +257,10 @@ main {
     background-color: #40916c;
 }
 
-.delete-task-btn {
-    display: block;
-    background-color: #BEBEBE;
-    border: solid;
-    border-color: white;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    width: 1.5 rem;
-    padding: 8px;
-    transition: background-color 0.3s
-}
-
-.delete-task-btn:hover {
-    background-color: #C82A2A;
-}
-
 /* Task details right*/
 
 .task-detail {
-    display: block;
+    display: none;
 }
 
 .close-task {
@@ -301,7 +284,12 @@ main {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+}
 
+.edit-task-list-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
 }
 
 .edit-field {
@@ -313,7 +301,14 @@ main {
     margin-bottom: 1em;
 }
 
+.edit-task-btn-container {
+    justify-content: flex-end;
+
+}
+
 .update-task-btn {
+    float: right;
+    margin-left: 1rem;
     margin-top: 1rem;
     background-color: #52b788;
     color: aliceblue;
@@ -328,4 +323,22 @@ main {
 
 .update-task-btn:hover {
     background-color: #40916c;
+}
+
+.delete-task-btn {
+    float: right;
+    margin-top: 1rem;
+    background-color: #BEBEBE;
+    color: aliceblue;
+    border-radius: 5px;
+    border: solid;
+    border-color: white;
+    cursor: pointer;
+    height: 2rem;
+    width: 5rem;
+    transition: background-color 0.3s
+}
+
+.delete-task-btn:hover {
+    background-color: #C82A2A;
 }
