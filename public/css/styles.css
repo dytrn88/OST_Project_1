@@ -202,20 +202,25 @@ main {
     background-color: lightgrey;
 }
 
-.task-list {
+/* .task-list {
     display: grid;
-    grid-template-columns: 200px 130px 130px 130px 130px;
+    grid-template-columns: 200px 130px 130px 130px 130px 130px;
+    column-gap: 18px;
+    padding: 8px;
+    place-items: ;
+} */
+
+.task-list-container {
+    display: grid;
+    grid-template-columns: 50px 200px 100px 180px 70px 70px;
+    grid-template-rows: 2.5rem;
     column-gap: 18px;
     padding: 8px;
     place-items: ;
 }
 
-.task-list-container {
-    display: grid;
-    grid-template-columns: 130px 130px 130px 130px 130px;
-    column-gap: 18px;
-    padding: 8px;
-    place-items: ;
+.task-list-container:hover {
+    background-color: #40916c;
 }
 
 .task-title {
@@ -235,7 +240,7 @@ main {
     cursor: pointer;
 }
 
-.delete-task-btn {
+.edit-task-btn {
     display: block;
     background-color: #52b788;
     border: solid;
@@ -248,15 +253,31 @@ main {
     transition: background-color 0.3s
 }
 
-.sort-task-btn:hover {
+.edit-task-btn:hover {
     background-color: #40916c;
 }
 
+.delete-task-btn {
+    display: block;
+    background-color: #BEBEBE;
+    border: solid;
+    border-color: white;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    width: 1.5 rem;
+    padding: 8px;
+    transition: background-color 0.3s
+}
+
+.delete-task-btn:hover {
+    background-color: #C82A2A;
+}
 
 /* Task details right*/
 
 .task-detail {
-    display: none;
+    display: block;
 }
 
 .close-task {

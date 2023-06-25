@@ -17,22 +17,22 @@ export class TaskStore {
         this.db = db || new Datastore(options);
     }
 
-    async add(title, content, priority, duedate) {
-        let task = new TaskManager(title, content, priority, duedate);
+    async add(title, content, priority, duedate, state) {
+        console.log(this.duedate)
+        console.log(duedate)
+
+        let task = new TaskManager(title, content, priority, duedate, state);
         return this.db.insert(task);
     }
 
     async delete(id) {
-        await this.db.remove({}, { multi: true }, function (err, numRemoved) { });
-        return this
-            .get(id)
+        await this.db.update({ _id: id }, { $set: { state: "DELETED" } });
+        return this.get(id);
     }
 
     async get(id) {
-        return this.db
-            .findOne({ _id: id })
-            .exec();
-    }
+        return this.db.findOne({ _id: id }).exec();
+    };
 
     async update(id, title, content, priority, duedate) {
         await this.db.update({ _id: id }, {

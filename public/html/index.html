@@ -66,8 +66,7 @@
                         <br>
                         <button class="filter-task-btn">Filter completed</button>
                     </div>
-                    <div>
-                    </div>
+
                     <div class="task-list" id="taskList"> </div>
                 </div>
 
@@ -75,14 +74,14 @@
                     <table class="table table-striped">
                         <tbody>
                         {{#each task}}
-                        <tr>
+                        <div data-id="{{_id}}" class="task-list-container">
+                            <input class="task-checkbox" type="checkbox">             
                             <p class="task-title">{{title}}</p>
                             <p class="task-priority">{{priority}}</p>                
                             <p class="task-date">{{dueDate}}</p>
-                            <input class="task-checkbox" type="checkbox">                
-                            <button data-id="{{_id}}" class="delete-task-btn" id="deleteTaskBtn">Delete</button>
-                            </td>
-                        </tr>
+                            <button data-id="{{_id}}" class="edit-task-btn">Edit</button>                                            
+                            <button data-id="{{_id}}" class="delete-task-btn">Delete</button>                                            
+                        </div>
                         {{/each}}
                         </tbody>
                     </table>
@@ -107,6 +106,16 @@
                         <button class="update-task-btn" type="button" id="updateTaskBtn">Update</button>
                     </form>
                 </div>
+
+                <script id="edit-tasks-template" type="text/x-handlebars-template">
+                    <div class="edit-task-list-container">
+                        <p class="edit-id">{{_id}}</p>
+                        <p class="edit-title">{{title}}</p>                           
+                        <p class="edit-content">{{content}}</p>                                                               
+                        <p class="edit-title">{{priority}}</p>                                                               
+                        <p class="edit-duedate">{{duedate}}</p>                                                               
+                     </div>                                
+                </script>
 
             </div>
 

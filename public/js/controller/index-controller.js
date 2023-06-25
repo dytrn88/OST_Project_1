@@ -1,15 +1,11 @@
 import { applyFilter, taskService } from '../services/task-service.js';
 
-import { closeDialog, getTaskElements, showDialog } from './controller-components.js';
+import { closeDialog, closeTask, getTaskElements, openTask, showDialog } from './controller-components.js';
 
-import { selectTask, openTask, closeTask } from '../services/selectTasks.js';
+import { selectTask } from '../services/selectTasks.js';
 import { sortTaskDates, sortTaskPriority, sortTaskTitles } from '../services/sortTasks.js';
 
-import { renderTaskTitles } from '../services/renderTasks.js';
-
-const taskTitlesElement = document.querySelector('#taskList');
-const openTaskDetail = document.querySelector('.task-detail');
-const closeTaskBtn = document.querySelector('.close-task');
+/* import { renderTaskTitles } from '../services/renderTasks.js'; */
 
 const sortTitleBtn = document.getElementById('sortTaskTitlesBtn')
 const sortDateBtn = document.getElementById('sortTaskDatesBtn')
@@ -54,21 +50,25 @@ newTaskBtn.addEventListener('click', async (event) => {
     const newTaskDate = getNewDate.value;
     const newTaskPriority = getNewPriority.value;
 
+    console.log(getNewDate.value);
+
     const newTask = {
         title: newTaskTitle,
         content: newTaskContent,
         date: newTaskDate,
         priority: newTaskPriority,
+        state: "OK"
     };
 
     await taskService.addTask(newTask);
     closeDialog(dialogOverlay, dialogBox);
+    renderAllTasks();
 })
 
 
-// Render Tasks
-const taskContainer = document.querySelector(".task-list");
-const tasksRenderer = Handlebars.compile(document.querySelector("#tasks-template").innerHTML);
+// Render all Tasks
+const taskContainer = document.querySelector(".task-list");  // desination to display all tasks
+const tasksRenderer = Handlebars.compile(document.querySelector("#tasks-template").innerHTML); // Handlebar compiler
 
 async function renderAllTasks() {
     taskContainer.innerHTML = tasksRenderer({ task: await taskService.getAllTask() });
@@ -77,6 +77,61 @@ async function renderAllTasks() {
 document.addEventListener('DOMContentLoaded', () => {
     renderAllTasks();
 });
+
+
+// Select and display a task on dialog "Task details"
+const taskFormElement = document.querySelector('.task-list'); // trigger to fire the function "select and display function" below
+
+const openTaskDetail = document.querySelector('.task-detail');
+const closeTaskBtn = document.querySelector('.close-task');
+
+const editTaskForm = document.querySelector('.edit-test-container') // desination to display the selected task
+const renderTask = Handlebars.compile(document.querySelector("#edit-tasks-template").innerHTML); // Handlebar compiler
+
+taskFormElement.addEventListener('click', async (event) => {
+    if (event.target.classList.contains('edit-task-btn')) { // read edit button
+
+        const taskId = event.target.parentElement.dataset.id; // find the id assigned within handlebar template
+        console.log(taskId)
+        const task = await taskService.getTask(taskId)
+        console.log(task.duedate) // duedate format seems wrong
+
+        async function retrieveTask() {
+            editTaskForm.innerHTML = renderTask(await taskService.getTask(taskId)) // get server response to retrieve task elements
+        }
+
+        const selectedTitleElement = document.querySelector('#selectedTitle'); // direct the selected task to the input form
+        const selectedContentElement = document.querySelector('#selectedContent');
+        const selectedDueDateElement = document.querySelector('#selectedDate');
+        const selectedPriorityElement = document.querySelector('#selectedPriority');
+
+        selectedTitleElement.value = task.title;
+        selectedContentElement.value = task.content;
+        selectedDueDateElement.value = task.duedate; // duedate format needs to be fixed, I guess need a handlebar helper
+        selectedPriorityElement.value = task.priority;
+
+        retrieveTask() // render and display the selected task on in the dialog 
+        openTask(openTaskDetail) // open dialog for task details
+    }
+
+    if (event.target.classList.contains('delete-task-btn')) { // read delete button
+        const taskId = event.target.parentElement.dataset.id;
+        console.log(taskId)
+
+        await taskService.deleteTask(taskId)
+    }
+})
+
+closeTaskBtn.addEventListener('click', () => {
+    closeTask(openTaskDetail);
+});
+
+
+// Edit and update the selected task
+
+const orderId = window.location.hash.substring(1);
+console.log(orderId)
+
 
 
 // Sort by tasks
@@ -94,37 +149,18 @@ sortPriorityBtn.addEventListener('click', (event) => {
 });
 
 
-// Delete task
-const deleteTaskBtn = document.getElementById('deleteTaskBtn');
-console.log(document.getElementById('deleteTaskBtn'))
-deleteTaskBtn.addEventListener('click', async (event) => {
-    event.stopPropagation();
-    await taskService.deleteTask()
-})
-
-
-// Select task to display or close on the right side
-taskTitlesElement.addEventListener('click', (event) => {
-    selectTask(event);
-    openTask(openTaskDetail);
-});
-
-closeTaskBtn.addEventListener('click', () => {
-    closeTask(openTaskDetail);
-});
-
 // Edit the selected task > get from selectTasks.js
 
 
-filterTasksBtn.addEventListener('click', (event) => {
+/* filterTasksBtn.addEventListener('click', (event) => {
     event.stopPropagation();
     applyFilter();
 });
-
+ */
 
 // Toggle for "Dark theme"
 const darkModeBtn = document.getElementById('darkMode');
-
-darkModeBtn.addEventListener('click', () => {
+darkModeBtn.addEventListener('click', (event) => {
+    event.preventDefault();
     document.body.classList.toggle('dark-mode');
 });
