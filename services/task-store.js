@@ -46,7 +46,7 @@ export class TaskStore {
         return this.get(id);
     }
 
-    async all(query, sortBy) {
+    async all(query, sortBy, sortOrder) {
         let dbQuery = {
             $and: [{ state: { $ne: "DELETED" } }],
         };

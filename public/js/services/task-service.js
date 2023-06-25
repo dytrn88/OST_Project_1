@@ -4,8 +4,8 @@ import { renderTaskTitles } from './renderTasks.js';
 import { getTaskElements } from '../controller/controller-components.js';
 
 class TaskService {
-    async getAllTask(sortBy) {
-        return httpService.ajax("GET", `/task/?sortBy=${sortBy}`);
+    async getAllTask(sortBy, sortOrder) {
+        return httpService.ajax("GET", `/task/?sortBy=${sortBy}&sortOrder=${sortOrder}`);
     }
 
     async addTask(task) {

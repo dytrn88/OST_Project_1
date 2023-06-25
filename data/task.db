@@ -9,3 +9,15 @@
 {"title":"Date sort test works?","content":"Placeholder","priority":"3 - Urgent","duedate":"2023-06-30","addDate":{"$$date":1687718328871},"state":"OK","_id":"QdsDPecvznfyO4mP"}
 {"title":"Another date test","content":"Test","priority":"3 - Urgent","duedate":"2023-06-25","addDate":{"$$date":1687701545757},"state":"OK","_id":"VhwENju22IR1SlSI"}
 {"title":"Proper test ","content":"Works?","priority":"3 - Urgent","duedate":"2023-06-25","addDate":{"$$date":1687717933454},"state":"OK","_id":"zPv0XVRGD6lnR2FI"}
+{"title":"Test date test","content":"Another test","priority":"1 - Mid","duedate":"2023-06-24","addDate":{"$$date":1687700973263},"state":"DELETED","_id":"1l93P1UYo6vu19lN"}
+{"title":"Z - test sort function","content":"Sort","priority":"3 - Urgent","duedate":{"$$date":1687651200000},"addDate":{"$$date":1687729364372},"state":"OK","_id":"SUgGz1ASH7py7ULn"}
+{"title":"A - test sort function","content":"Sort","priority":"3 - Urgent","duedate":{"$$date":1687651200000},"addDate":{"$$date":1687729376459},"state":"OK","_id":"ZpCAympdWiZdYyNg"}
+{"title":"Z - test sort function","content":"Sort","priority":"3 - Urgent","duedate":"2023-06-25","addDate":{"$$date":1687729364372},"state":"OK","_id":"SUgGz1ASH7py7ULn"}
+{"title":"A - test sort function","content":"Sort","priority":"3 - Urgent","duedate":"2023-06-25","addDate":{"$$date":1687729376459},"state":"OK","_id":"ZpCAympdWiZdYyNg"}
+{"title":"Z - test sort function","content":"Sort","priority":"3 - Urgent","duedate":"2023-06-30","addDate":{"$$date":1687729364372},"state":"OK","_id":"SUgGz1ASH7py7ULn"}
+{"title":"A - test sort function","content":"Sort","priority":"3 - Urgent","duedate":"2023-06-07","addDate":{"$$date":1687729376459},"state":"OK","_id":"ZpCAympdWiZdYyNg"}
+{"title":"Date test","content":"Works?","priority":"3 - Urgent","duedate":"2023-06-15","addDate":{"$$date":1687718021834},"state":"OK","_id":"QPLnvG3aFdQvgr4f"}
+{"title":"B - test sort function","content":"Sort","priority":"1 - Mid","duedate":{"$$date":1686528000000},"addDate":{"$$date":1687729426978},"state":"OK","_id":"IHAqQbmdMpgtRYxL"}
+{"title":"K - test sort function","content":"Sort","priority":"1 - Mid","duedate":"2023-06-12","addDate":{"$$date":1687729426978},"state":"OK","_id":"IHAqQbmdMpgtRYxL"}
+{"title":"Z - test sort function","content":"Sort","priority":"3 - Urgent","duedate":"2023-08-18","addDate":{"$$date":1687729364372},"state":"OK","_id":"SUgGz1ASH7py7ULn"}
+{"title":"Proper test ","content":"Works?","priority":"3 - Urgent","duedate":"2023-07-22","addDate":{"$$date":1687717933454},"state":"OK","_id":"zPv0XVRGD6lnR2FI"}

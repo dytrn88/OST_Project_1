@@ -1,14 +1,5 @@
 import { taskService } from '../services/task-service.js';
-
 import { closeDialog, closeTask, getTaskElements, openTask, showDialog } from './controller-components.js';
-
-/* import { selectTask } from '../services/selectTasks.js'; */
-
-/* const sortTitleBtn = document.getElementById('sortTaskTitlesBtn')
-const sortDateBtn = document.getElementById('sortTaskDatesBtn')
-const sortPriorityBtn = document.getElementById('sortTaskPriorityBtn') */
-
-/* const filterTasksBtn = document.querySelector('.filter-task-btn') */
 
 
 // Open dialog with + Create button and close dialog
@@ -106,6 +97,7 @@ closeTaskBtn.addEventListener('click', () => {
     closeTask(openTaskDetail);
 });
 
+
 // Edit and update the selected task
 const editTaskDetail = document.querySelector('.edit-task-container');
 
@@ -140,14 +132,12 @@ editTaskDetail.addEventListener('click', async (event) => {
 });
 
 
-// Apply sort function by task, date or priority
-let defaultSortOption = "desc"; // default sort option by duedate
+// Apply sort function by date, task or priority
+let defaultSortOption = localStorage.getItem('sortOption') || "desc"; // Retrieve the sort option from localStorage or use default "desc"
 
-const sortByTaskBtn = document.querySelector('#sortTaskDatesBtn');
-console.log(document.querySelector('#sortByTaskBtn'))
+const sortByDueDateBtn = document.querySelector('#sortTaskDatesBtn'); // trigger to fire the sort function by date
 
-sortByTaskBtn.addEventListener('click', async (event) => {
-    event.preventDefault();
+sortByDueDateBtn.addEventListener('click', async (event) => {
 
     if (defaultSortOption === "asc") {
         defaultSortOption = "desc";
@@ -155,8 +145,24 @@ sortByTaskBtn.addEventListener('click', async (event) => {
         defaultSortOption = "asc";
     }
 
+    localStorage.setItem('sortOption', defaultSortOption); // Store the updated sort option in localStorage
+
     await renderAllTasks();
 
+});
+
+const sortByTaskBtn = document.querySelector('#sortByTaskBtn'); // trigger to fire the sort function by task
+console.log(document.querySelector('#sortByTaskBtn'))
+
+sortByTaskBtn.addEventListener('click', async (event) => {
+
+    if (currentSortOption === "sortByTask") {
+        currentSortOrder = currentSortOrder === "asc" ? "desc" : "asc";
+    } else {
+        currentSortOption = "sortByTask";
+        currentSortOrder = "asc";
+    }
+    await renderAllTasks(currentSortOption, currentSortOrder);
 });
 
 

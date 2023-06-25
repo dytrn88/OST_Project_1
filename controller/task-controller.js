@@ -5,8 +5,9 @@ export class TaskController {
 
     getAllTasks = async (req, res) => {
         const sortBy = req.query.sortBy === "desc" ? -1 : 1; // Set the sorting order based on the query parameter
+        const sortOrder = req.query.sortOrder || 1;
         console.log(sortBy)
-        res.json(await taskStore.all(req.query.query, sortBy));
+        res.json(await taskStore.all(req.query.query, sortBy, sortOrder));
     };
 
     addTask = async (req, res) => {
