@@ -1,8 +1,12 @@
 import { httpService } from './http-service.js'
 
 class TaskService {
-    async getAllTask(sortBy, sortOrder) {
-        return httpService.ajax("GET", `/task/?sortBy=${sortBy}&sortOrder=${sortOrder}`);
+    async getAllTask(sortBy, sortOrder, filterCompleted) {
+        let url = `/task/?sortBy=${sortBy}&sortOrder=${sortOrder}`;
+        if (filterCompleted) {
+            url += `&filterCompleted=true`;
+        }
+        return httpService.ajax("GET", url);
     }
 
     async addTask(task) {
@@ -20,11 +24,13 @@ class TaskService {
     }
 
     async updateTask(_id, task) {
+        console.log(task)
         return httpService.ajax("POST", `/task/${_id}`, {
             title: task.title,
             content: task.content,
             priority: task.priority,
-            duedate: task.duedate
+            duedate: task.duedate,
+            state: task.state,
         });
     }
 

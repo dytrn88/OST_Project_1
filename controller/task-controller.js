@@ -6,7 +6,8 @@ export class TaskController {
     getAllTasks = async (req, res) => {
         const sortBy = req.query.sortBy || 'duedate';
         const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
-        res.json(await taskStore.all(req.query.query, sortBy, sortOrder));
+        const filterCompleted = req.query.filterCompleted === 'true';
+        res.json(await taskStore.all(req.query.query, sortBy, sortOrder, filterCompleted));
     };
 
     addTask = async (req, res) => {
@@ -31,6 +32,7 @@ export class TaskController {
             req.body.content,
             req.body.priority,
             req.body.duedate,
+            req.body.state,
         ));
     };
 

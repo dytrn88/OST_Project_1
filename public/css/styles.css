@@ -5,20 +5,8 @@ html {
 
 /* Main */
 body {
-    background-color: #fff;
+    background-color: #edede9;
     transition: 0.5s;
-}
-
-main {
-    background-color: #d8f3dc;
-}
-
-
-/* Dark mode*/
-.dark-mode {
-    background-color: #081c15;
-    color: #fff;
-    transition: 0.5s
 }
 
 
@@ -37,7 +25,7 @@ main {
     background-color: white;
     border-radius: 20px;
     border: solid;
-    border-color: #1b4332;
+    border-color: #d5bdaf;
     cursor: pointer;
     height: 2rem;
     width: 10rem;
@@ -126,7 +114,7 @@ main {
     margin-top: 1rem;
     width: 100px;
     padding: 8px;
-    background-color: #52b788;
+    background-color: #d5bdaf;
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -136,7 +124,7 @@ main {
 }
 
 .new-task-btn:hover {
-    background-color: #40916c;
+    background-color: #e3d5ca;
 }
 
 
@@ -145,7 +133,7 @@ main {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     grid-gap: 1em;
-    background-color: #b7e4c7;
+    background-color: #d6ccc2;
     border-radius: 24px;
     padding: 8px;
 
@@ -171,7 +159,7 @@ main {
 
 .sort-task-btn {
     display: block;
-    background-color: #52b788;
+    background-color: #d5bdaf;
     border: solid;
     border-color: white;
     border-radius: 5px;
@@ -182,7 +170,7 @@ main {
 }
 
 .sort-task-btn:hover {
-    background-color: #40916c;
+    background-color: #e3d5ca;
 }
 
 .filter-task-btn {
@@ -190,7 +178,7 @@ main {
     margin-right: ;
     background-color: #fff;
     border: solid;
-    border-color: #52b788;
+    border-color: #d5bdaf;
     border-radius: 5px;
     color: black;
     cursor: pointer;
@@ -199,7 +187,7 @@ main {
 }
 
 .filter-task-btn:hover {
-    background-color: lightgrey;
+    background-color: #edede9;
 }
 
 /* .task-list {
@@ -212,15 +200,15 @@ main {
 
 .task-list-container {
     display: grid;
-    grid-template-columns: 50px 200px 100px 180px 70px;
+    grid-template-columns: 200px 100px 100px 170px 70px;
     grid-template-rows: 2.5rem;
     column-gap: 18px;
     padding: 8px;
-    place-items: ;
+    margin-right: 1rem;
 }
 
 .task-list-container:hover {
-    background-color: #40916c;
+    background-color: #edede9;
 }
 
 .task-title {
@@ -242,7 +230,7 @@ main {
 
 .edit-task-btn {
     display: block;
-    background-color: #52b788;
+    background-color: #d5bdaf;
     border: solid;
     border-color: white;
     border-radius: 5px;
@@ -254,7 +242,7 @@ main {
 }
 
 .edit-task-btn:hover {
-    background-color: #40916c;
+    background-color: #e3d5ca;
 }
 
 /* Task details right*/
@@ -301,16 +289,34 @@ main {
     margin-bottom: 1em;
 }
 
+.edit-field-checkbox-container {
+    border: solid 1px;
+    border-color: #d5bdaf;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+
+    vertical-align: middle;
+    padding: 8px;
+    background-color: #fff;
+}
+
+.edit-field-checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 36px;
+}
+
 .edit-task-btn-container {
     justify-content: flex-end;
-
 }
 
 .update-task-btn {
     float: right;
     margin-left: 1rem;
     margin-top: 1rem;
-    background-color: #52b788;
+    background-color: #d5bdaf;
     color: aliceblue;
     border-radius: 5px;
     border: solid;
@@ -322,7 +328,7 @@ main {
 }
 
 .update-task-btn:hover {
-    background-color: #40916c;
+    background-color: #e3d5ca;
 }
 
 .delete-task-btn {
@@ -341,4 +347,82 @@ main {
 
 .delete-task-btn:hover {
     background-color: #C82A2A;
+}
+
+
+/* Dark mode*/
+.dark-mode {
+    background-color: #343a40;
+    color: #e9ecef;
+    transition: 0.3s
+}
+
+.dark-mode .menu-button {
+    background-color: #fff;
+    border-color: #212529;
+}
+
+.dark-mode .add-task-form-container,
+.dark-mode .edit-task-form-container,
+.dark-mode .edit-task-list-container {
+    background-color: #212529;
+}
+
+.dark-mode .task-container {
+    background-color: #212529;
+}
+
+.dark-mode .task-list-container:hover {
+    background-color: #343a40;
+}
+
+.dark-mode .edit-field,
+.dark-mode .input-field {
+    border-color: #fff;
+}
+
+
+.dark-mode .new-task-btn,
+.dark-mode .sort-task-btn,
+.dark-mode .edit-task-btn,
+.dark-mode .update-task-btn {
+    background-color: #495057;
+}
+
+.dark-mode .close-task {
+    color: #e9ecef;
+}
+
+.dark-mode .edit-field-checkbox-container {
+    color: black;
+    font: bolder;
+}
+
+.dark-mode .delete-task-btn {
+    background-color: #6c757d;
+}
+
+.dark-mode .delete-task-btn:hover {
+    background-color: #C82A2A;
+}
+
+.dark-mode .filter-task-btn {
+    background-color: #fff;
+    border-color: #495057;
+}
+
+.dark-mode .filter-task-btn:hover {
+    background-color: #dee2e6;
+}
+
+.dark-mode .new-task-btn:hover,
+.dark-mode .sort-task-btn:hover,
+.dark-mode .edit-task-btn:hover,
+.dark-mode .update-task-btn:hover {
+    background-color: #adb5bd;
+}
+
+.dark-mode .task-item {
+    border-right: 1px solid;
+    border-color: #fff;
 }

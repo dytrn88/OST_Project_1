@@ -12,20 +12,20 @@ const taskContainer = document.querySelector(".task-list");  // desination to di
 const tasksRenderer = Handlebars.compile(document.querySelector("#tasks-template").innerHTML); // Handlebar compiler
 
 
-async function renderAllTasks(currentSortOption, currentSortOrder) {
+async function renderAllTasks(currentSortOption, currentSortOrder, filterCompleted) {
     if (currentSortOption === "sortByDate") {
         taskContainer.innerHTML = tasksRenderer({
-            task: await taskService.getAllTask("sortByDate", currentSortOrder),
+            task: await taskService.getAllTask("sortByDate", currentSortOrder, filterCompleted),
         });
     }
     else if (currentSortOption === "sortByTask") {
         taskContainer.innerHTML = tasksRenderer({
-            task: await taskService.getAllTask("sortByTask", currentSortOrder),
+            task: await taskService.getAllTask("sortByTask", currentSortOrder, filterCompleted),
         });
     }
     else if (currentSortOption === "sortByPriority") {
         taskContainer.innerHTML = tasksRenderer({
-            task: await taskService.getAllTask("sortByPriority", currentSortOrder),
+            task: await taskService.getAllTask("sortByPriority", currentSortOrder, filterCompleted),
         });
     }
 }
@@ -103,7 +103,7 @@ taskFormElement.addEventListener('click', async (event) => {
         retrieveTask() // render and display the selected task on in the dialog 
         openTask(openTaskDetail) // open dialog for task details
     }
-    renderAllTasks();
+    renderAllTasks(currentSortOption, currentSortOrder);
 })
 
 closeTaskBtn.addEventListener('click', () => {
@@ -123,16 +123,19 @@ editTaskDetail.addEventListener('click', async (event) => {
         const editContentElement = document.querySelector('#editContent');
         const editDueDateElement = document.querySelector('#editDueDate');
         const editPriorityElement = document.querySelector('#editPriority');
+        const editStatusElement = document.querySelector('#editStatus');
+
 
         const updatedTask = { // read new value from input fields
             title: editTitleElement.value,
             content: editContentElement.value,
             duedate: editDueDateElement.value,
             priority: editPriorityElement.value,
+            state: editStatusElement.checked,
         };
 
         await taskService.updateTask(taskId, updatedTask) // get server response to update task elements
-        renderAllTasks(currentSortOption, currentSortOrder);
+        renderAllTasks(currentSortOption, currentSortOrder, filterCompleted);
     }
 
     if (event.target.classList.contains('delete-task-btn')) { // read delete button
@@ -140,7 +143,7 @@ editTaskDetail.addEventListener('click', async (event) => {
         const taskId = event.target.parentElement.dataset.id;
 
         await taskService.deleteTask(taskId) // get server response to set DELETE state the selected task
-        renderAllTasks(currentSortOption, currentSortOrder);
+        renderAllTasks(currentSortOption, currentSortOrder, filterCompleted);
     }
 });
 
@@ -158,37 +161,37 @@ function handleSortInput(sortOption) {
         event.preventDefault();
         if (currentSortOption === sortOption) {
             currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
-        } else {
+        }
+        else {
             currentSortOption = sortOption;
             currentSortOrder = 'asc';
         }
 
         await renderAllTasks(currentSortOption, currentSortOrder);
-        localStorage.setItem('sortOption', currentSortOption);
-        localStorage.setItem('sortOrder', currentSortOrder);
+
     };
 }
+
 
 sortByTaskBtn.addEventListener('click', handleSortInput('sortByTask'));
 sortByDueDateBtn.addEventListener('click', handleSortInput('sortByDate'));
 sortByPriorityBtn.addEventListener('click', handleSortInput('sortByPriority'));
 
 
-let filterCompleted = false;
-
-/* const checkboxStatus = document.querySelector('.task-checkbox'); */
-
-taskContainer.addEventListener('click', (event) => { //read taskFormElement to access the task ID
-
-    if (event.target.classList.contains('task-checkbox')) { // read edit button
-
-
-    }
-})
-
-
 
 // Apply filter to hide completed tasks
+const filterTaskBtn = document.querySelector('#filterTaskBtn');
+console.log(document.querySelector('#filterTaskBtn'))
+
+let filterCompleted = false; // Default state to show completed tasks
+
+filterTaskBtn.addEventListener('click', async () => {
+    filterCompleted = !filterCompleted; // Toggle the filter state
+
+    await renderAllTasks(currentSortOption, currentSortOrder, filterCompleted);
+
+    filterTaskBtn.textContent = filterCompleted ? 'Show all tasks' : 'Hide completed';
+});
 
 
 // Toggle for "Dark theme"
@@ -196,4 +199,6 @@ const darkModeBtn = document.getElementById('darkMode');
 darkModeBtn.addEventListener('click', (event) => {
     event.preventDefault();
     document.body.classList.toggle('dark-mode');
+
+    /* filterTaskBtn.textContent = filterCompleted ? 'Show all tasks' : 'Hide completed'; */
 });
