@@ -51,14 +51,20 @@ export class TaskStore {
             $and: [{ state: { $ne: "DELETED" } }],
         };
 
-        if (query === "sortByDate") {
-            return this.db.find(dbQuery).sort({ duedate: sortBy }).exec();
+        if (sortBy === "sortByDate") {
+            return this.db.find(dbQuery).sort({ duedate: sortOrder }).exec();
         }
-        else if (query === "sortByTask") {
-            return this.db.find(dbQuery).sort({ title: sortBy }).exec();
+
+        else if (sortBy === "sortByTask") {
+            return this.db.find(dbQuery).sort({ title: sortOrder }).exec();
         }
+
+        else if (sortBy === "sortByPriority") {
+            return this.db.find(dbQuery).sort({ priority: sortOrder }).exec();
+        }
+
         else {
-            return this.db.find(dbQuery).sort({ duedate: sortBy }).exec();
+            return this.db.find(dbQuery).sort({ duedate: sortOrder }).exec();
         }
     }
 }

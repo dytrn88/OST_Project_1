@@ -4,9 +4,8 @@ import { taskStore } from '../services/task-store.js'
 export class TaskController {
 
     getAllTasks = async (req, res) => {
-        const sortBy = req.query.sortBy === "desc" ? -1 : 1; // Set the sorting order based on the query parameter
-        const sortOrder = req.query.sortOrder || 1;
-        console.log(sortBy)
+        const sortBy = req.query.sortBy || 'duedate';
+        const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
         res.json(await taskStore.all(req.query.query, sortBy, sortOrder));
     };
 

@@ -1,5 +1,34 @@
 import { taskService } from '../services/task-service.js';
-import { closeDialog, closeTask, getTaskElements, openTask, showDialog } from './controller-components.js';
+import { closeDialog, closeTask, openTask, showDialog } from './controller-components.js';
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderAllTasks("sortByDate", "asc");
+});
+
+
+// Render all Tasks
+const taskContainer = document.querySelector(".task-list");  // desination to display all tasks
+const tasksRenderer = Handlebars.compile(document.querySelector("#tasks-template").innerHTML); // Handlebar compiler
+
+
+async function renderAllTasks(currentSortOption, currentSortOrder) {
+    if (currentSortOption === "sortByDate") {
+        taskContainer.innerHTML = tasksRenderer({
+            task: await taskService.getAllTask("sortByDate", currentSortOrder),
+        });
+    }
+    else if (currentSortOption === "sortByTask") {
+        taskContainer.innerHTML = tasksRenderer({
+            task: await taskService.getAllTask("sortByTask", currentSortOrder),
+        });
+    }
+    else if (currentSortOption === "sortByPriority") {
+        taskContainer.innerHTML = tasksRenderer({
+            task: await taskService.getAllTask("sortByPriority", currentSortOrder),
+        });
+    }
+}
 
 
 // Open dialog with + Create button and close dialog
@@ -38,8 +67,6 @@ newTaskBtn.addEventListener('click', async (event) => {
     const newTaskDate = getNewDate.value;
     const newTaskPriority = getNewPriority.value;
 
-    console.log(getNewDate.value);
-
     const newTask = {
         title: newTaskTitle,
         content: newTaskContent,
@@ -49,22 +76,8 @@ newTaskBtn.addEventListener('click', async (event) => {
 
     await taskService.addTask(newTask);
     closeDialog(dialogOverlay, dialogBox);
-    renderAllTasks();
+    renderAllTasks(currentSortOption, currentSortOrder);
 })
-
-
-// Render all Tasks
-const taskContainer = document.querySelector(".task-list");  // desination to display all tasks
-const tasksRenderer = Handlebars.compile(document.querySelector("#tasks-template").innerHTML); // Handlebar compiler
-
-async function renderAllTasks() {
-    taskContainer.innerHTML = tasksRenderer({ task: await taskService.getAllTask(defaultSortOption) });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderAllTasks();
-});
-
 
 
 // Select and display a task on dialog "Task details"
@@ -119,7 +132,7 @@ editTaskDetail.addEventListener('click', async (event) => {
         };
 
         await taskService.updateTask(taskId, updatedTask) // get server response to update task elements
-        renderAllTasks();
+        renderAllTasks(currentSortOption, currentSortOrder);
     }
 
     if (event.target.classList.contains('delete-task-btn')) { // read delete button
@@ -127,43 +140,55 @@ editTaskDetail.addEventListener('click', async (event) => {
         const taskId = event.target.parentElement.dataset.id;
 
         await taskService.deleteTask(taskId) // get server response to set DELETE state the selected task
-        renderAllTasks();
+        renderAllTasks(currentSortOption, currentSortOrder);
     }
 });
 
 
 // Apply sort function by date, task or priority
-let defaultSortOption = localStorage.getItem('sortOption') || "desc"; // Retrieve the sort option from localStorage or use default "desc"
+let currentSortOption = "sortByDate"; // default sort option by duedate
+let currentSortOrder = "asc"; // default sort order, ascending
 
-const sortByDueDateBtn = document.querySelector('#sortTaskDatesBtn'); // trigger to fire the sort function by date
+const sortByTaskBtn = document.querySelector('#sortByTaskBtn');
+const sortByDueDateBtn = document.querySelector('#sortByDueDateBtn');
+const sortByPriorityBtn = document.querySelector('#sortByPriorityBtn');
 
-sortByDueDateBtn.addEventListener('click', async (event) => {
+function handleSortInput(sortOption) {
+    return async (event) => {
+        event.preventDefault();
+        if (currentSortOption === sortOption) {
+            currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+        } else {
+            currentSortOption = sortOption;
+            currentSortOrder = 'asc';
+        }
 
-    if (defaultSortOption === "asc") {
-        defaultSortOption = "desc";
-    } else {
-        defaultSortOption = "asc";
+        await renderAllTasks(currentSortOption, currentSortOrder);
+        localStorage.setItem('sortOption', currentSortOption);
+        localStorage.setItem('sortOrder', currentSortOrder);
+    };
+}
+
+sortByTaskBtn.addEventListener('click', handleSortInput('sortByTask'));
+sortByDueDateBtn.addEventListener('click', handleSortInput('sortByDate'));
+sortByPriorityBtn.addEventListener('click', handleSortInput('sortByPriority'));
+
+
+let filterCompleted = false;
+
+/* const checkboxStatus = document.querySelector('.task-checkbox'); */
+
+taskContainer.addEventListener('click', (event) => { //read taskFormElement to access the task ID
+
+    if (event.target.classList.contains('task-checkbox')) { // read edit button
+
+
     }
+})
 
-    localStorage.setItem('sortOption', defaultSortOption); // Store the updated sort option in localStorage
 
-    await renderAllTasks();
 
-});
-
-const sortByTaskBtn = document.querySelector('#sortByTaskBtn'); // trigger to fire the sort function by task
-console.log(document.querySelector('#sortByTaskBtn'))
-
-sortByTaskBtn.addEventListener('click', async (event) => {
-
-    if (currentSortOption === "sortByTask") {
-        currentSortOrder = currentSortOrder === "asc" ? "desc" : "asc";
-    } else {
-        currentSortOption = "sortByTask";
-        currentSortOrder = "asc";
-    }
-    await renderAllTasks(currentSortOption, currentSortOrder);
-});
+// Apply filter to hide completed tasks
 
 
 // Toggle for "Dark theme"
