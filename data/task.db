@@ -1,21 +1,42 @@
 {"title":"New task update","content":"Test task","priority":"3 - Urgent","addDate":{"$$date":1687696506967},"state":"DELETED","_id":"0XxWpRY6MGOJ2xHt","duedate":""}
+{"title":"","content":"","priority":"3 - Urgent","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938248989},"state":"DELETED","_id":"1KxHQP7jvFBSk3ol"}
 {"title":"Where is the date","content":"format the date via handlebar","priority":"0 - Low","addDate":{"$$date":1687696892479},"state":"DELETED","_id":"1Y4CyXd1k7J8m1wd","duedate":""}
 {"title":"Test date test","content":"Another test","priority":"1 - Mid","duedate":"2023-06-24","addDate":{"$$date":1687700973263},"state":"DELETED","_id":"1l93P1UYo6vu19lN"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938256666},"state":"DELETED","_id":"1zU9T1lbfXsHKi3x"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938786562},"state":"DELETED","_id":"2aqXQAalH8NJaz14"}
 {"title":"Filter state test","content":"Test","priority":"3 - Urgent","duedate":"2023-06-25","addDate":{"$$date":1687901153525},"state":false,"_id":"3I9AZ8AmMt2yccUY"}
 {"title":"Filter test","content":"test","priority":"3 - Urgent","duedate":"2023-06-27","addDate":{"$$date":1687901058562},"state":false,"_id":"5qfJ0oA7lsciRVa7"}
 {"title":"State test","content":"Test","priority":"3 - Urgent","duedate":"2023-06-01","addDate":{"$$date":1687901184399},"state":"DELETED","_id":"Bun38P6E3jJvHUNw"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938272098},"state":"DELETED","_id":"CTUwDfMapRqtDgXR"}
 {"title":"Another test","content":"Funky bunky","priority":"0 - Low","addDate":{"$$date":1687696644754},"state":"DELETED","_id":"EUd0XJJZOEKo6UkX"}
 {"title":"A test sort function","content":"test","priority":"2 - High","duedate":"2023-05-19","addDate":{"$$date":1687772147337},"_id":"FyaYizczDXaKR0GO","state":"DELETED"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938207392},"state":"DELETED","_id":"HYTBPxWGwZ5tWi7L"}
 {"title":"K test sort function","content":"Sort","priority":"0 - Low","duedate":"2023-06-12","addDate":{"$$date":1687729426978},"state":"DELETED","_id":"IHAqQbmdMpgtRYxL"}
 {"title":"Render test round 3","content":"Seems to work","priority":"1 - Mid","duedate":"2023-06-24","addDate":{"$$date":1687717701258},"state":"DELETED","_id":"JlpdW3nU8lBSRJpb"}
 {"title":"","content":"","priority":"","duedate":null,"addDate":{"$$date":1687706258597},"state":"DELETED","_id":"NCoXVcRjE38lTxyR"}
 {"title":"Test","content":"Test","priority":"3 - Urgent","duedate":null,"addDate":{"$$date":1687723536533},"state":"DELETED","_id":"NL4dN8LWQC3ceCCg"}
 {"title":"Test","content":"","priority":"","duedate":null,"addDate":{"$$date":1687769462584},"state":"DELETED","_id":"Og424vUYo4pfqhQY"}
-{"title":"Date test","content":"Works?","priority":"3 - Urgent","duedate":"2023-06-15","addDate":{"$$date":1687718021834},"state":true,"_id":"QPLnvG3aFdQvgr4f"}
+{"title":"Date test","content":"Works?","priority":"3 - Urgent","duedate":"2023-06-15","addDate":{"$$date":1687718021834},"state":false,"_id":"QPLnvG3aFdQvgr4f"}
 {"title":"Date sort test works?","content":"Placeholder","priority":"1 - Mid","duedate":"2023-06-30","addDate":{"$$date":1687718328871},"state":false,"_id":"QdsDPecvznfyO4mP"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938951011},"state":"DELETED","_id":"SJ67MBLHYNB9QQg7"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938799590},"state":"DELETED","_id":"TKArWLGWi4GUx9q9"}
 {"title":"Another date test","content":"Test","priority":"1 - Mid","duedate":"2023-06-25","addDate":{"$$date":1687701545757},"state":false,"_id":"VhwENju22IR1SlSI"}
 {"title":"A - test sort function","content":"Sort","priority":"3 - Urgent","duedate":"2023-06-07","addDate":{"$$date":1687729376459},"state":"DELETED","_id":"ZpCAympdWiZdYyNg"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938340471},"state":"DELETED","_id":"ZtFaKOdmsV1RGuP6"}
+{"title":"Date input test","content":"","priority":"3 - Urgent","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687937840826},"state":"DELETED","_id":"aVTrfzFJfuWBq4OT"}
 {"title":"","content":"","priority":"","duedate":"2023-06-27","addDate":{"$$date":1687895000695},"state":"DELETED","_id":"dFM49UcmHUwE5WBg"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938327972},"state":"DELETED","_id":"fu99cDSNBhiHSWQe"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687938411133},"state":"DELETED","_id":"gcS0Vl3d0geRaRN3"}
 {"title":"Proper test ","content":"Works?","completed":"true","priority":"2 - High","duedate":"2023-07-22","addDate":{"$$date":1687717933454},"state":false,"_id":"zPv0XVRGD6lnR2FI"}
 {"title":"Date test","content":"Works?","priority":"3 - Urgent","duedate":"2023-06-15","addDate":{"$$date":1687718021834},"state":true,"_id":"QPLnvG3aFdQvgr4f"}
 {"title":"Date test","content":"Works?","priority":"3 - Urgent","duedate":"2023-06-15","addDate":{"$$date":1687718021834},"state":false,"_id":"QPLnvG3aFdQvgr4f"}
+{"title":"Filter state test","content":"Test","priority":"3 - Urgent","duedate":"2023-06-25","addDate":{"$$date":1687901153525},"state":true,"_id":"3I9AZ8AmMt2yccUY"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687961542006},"state":"false","_id":"KXGZdE3ylAH1A2BX"}
+{"title":"","content":"","priority":"","duedate":"2023-06-28","addDate":{"$$date":1687961542006},"state":true,"_id":"KXGZdE3ylAH1A2BX"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687961586794},"state":"false","_id":"asFh1Vk9KrdZVX2u"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1688083200000},"addDate":{"$$date":1687961985812},"state":"false","_id":"eRu8N5ctuhEeQAAx"}
+{"title":"","content":"","priority":"","duedate":null,"addDate":{"$$date":1687962101839},"state":"false","_id":"fJ7GxjrEeOXCwS5w"}
+{"title":"","content":"","priority":"","duedate":"2023-06-28","addDate":{"$$date":1687961542006},"state":"DELETED","_id":"KXGZdE3ylAH1A2BX"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1687910400000},"addDate":{"$$date":1687961586794},"state":"DELETED","_id":"asFh1Vk9KrdZVX2u"}
+{"title":"","content":"","priority":"","duedate":{"$$date":1688083200000},"addDate":{"$$date":1687961985812},"state":"DELETED","_id":"eRu8N5ctuhEeQAAx"}
+{"title":"","content":"","priority":"","duedate":null,"addDate":{"$$date":1687962101839},"state":"DELETED","_id":"fJ7GxjrEeOXCwS5w"}

@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="../css/styles.css">
 
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="../js/utils/handlebars-helpers.js"></script>
 
 </head>
 
@@ -40,7 +41,7 @@
 
                     <form class="add-task-form-container" id="addTaskForm">
                         <input class="input-field" id="newTaskTitle" type="text" placeholder="Add title">
-                        <input class="input-field" id="newTaskDate" type="date">
+                        <input class="input-field" id="newTaskDate" type="date" value="{{duedate}}">
                         <textarea class="input-field" id="newTaskContent" cols=" 30" rows="5"
                             placeholder="Description..."></textarea>
                         <select class="input-field" id="newTaskPriority">
@@ -76,7 +77,7 @@
                         {{#each task}}
                         <div data-id="{{_id}}" class="task-list-container {{#if completed}}completed-task{{/if}}">                          
                             <p class="task-title">{{title}}</p>
-                            <p class="task-date">{{duedate}}</p>
+                            <p class="task-date">{{formatDate duedate}}</p>
                             <p class="task-priority">{{priority}}</p>     
                             <br>           
                             <button data-id="{{_id}}" class="edit-task-btn">Edit</button>                                                                                     
@@ -106,7 +107,7 @@
                             <option>0 - Low</option>
                         </select>    
                         <label class="edit-field-checkbox-container" for="{{_id}}">Mask as completed
-                            <input class="edit-field-checkbox" id="editStatus" type="checkbox">
+                            <input class="edit-field-checkbox" id="editStatus" type="checkbox" checked>
                         </label>
                         <div data-id="{{_id}}" class="edit-task-btn-container">
                             <button data-id="{{_id}}" class="update-task-btn" id="updateTaskBtn">Update</button>

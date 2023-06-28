@@ -60,12 +60,16 @@ const getNewContent = document.getElementById('newTaskContent');
 const getNewDate = document.getElementById('newTaskDate');
 const getNewPriority = document.getElementById('newTaskPriority');
 
+
+
 newTaskBtn.addEventListener('click', async (event) => {
     event.preventDefault();
     const newTaskTitle = getNewTitle.value;
     const newTaskContent = getNewContent.value;
     const newTaskDate = getNewDate.value;
     const newTaskPriority = getNewPriority.value;
+
+    console.log(newTaskDate)
 
     const newTask = {
         title: newTaskTitle,
@@ -181,7 +185,6 @@ sortByPriorityBtn.addEventListener('click', handleSortInput('sortByPriority'));
 
 // Apply filter to hide completed tasks
 const filterTaskBtn = document.querySelector('#filterTaskBtn');
-console.log(document.querySelector('#filterTaskBtn'))
 
 let filterCompleted = false; // Default state to show completed tasks
 
