@@ -69,8 +69,6 @@ newTaskBtn.addEventListener('click', async (event) => {
     const newTaskDate = getNewDate.value;
     const newTaskPriority = getNewPriority.value;
 
-    console.log(newTaskDate)
-
     const newTask = {
         title: newTaskTitle,
         content: newTaskContent,
@@ -98,7 +96,6 @@ taskFormElement.addEventListener('click', async (event) => {
 
         const taskId = event.target.parentElement.dataset.id; // find the id assigned within handlebar template
         const task = await taskService.getTask(taskId)
-        console.log(task.duedate) // duedate format to be formatted with handlebar helper
 
         async function retrieveTask() {
             editTaskForm.innerHTML = renderTask(await taskService.getTask(taskId)) // get server response to retrieve task elements
